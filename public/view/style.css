@@ -1,0 +1,220 @@
+body {
+    background-color: #636363 !important;
+}
+
+.home-page__header__label {
+    font-size: 30px;
+    color: #C8C8C8;
+    font-weight: bold;
+}
+
+.home-page__header__underline {
+    border: 3px solid #C8C8C8;
+    border-radius: 10px;
+    width: 280px;
+    margin-top: 0px;
+}
+
+.home-page__img {
+    width: 800px;
+    height: 400px;
+    border-radius: 10px;
+}
+
+.home-page__about-game__header {
+    font-size: 26px;
+    color: #FFFFFF;
+}
+
+.home-page__about-game__content {
+    font-size: 20px;
+    color: #FFFFFF;
+}
+
+.home-page__authorization-form__underline {
+    border: 3px solid #C8C8C8;
+    border-radius: 10px;
+}
+
+.home-page__authorization-form__button-register {
+    font-size: 20px !important;
+    font-weight: bold !important;
+    color: #FFFFFF;
+    background-color: #40414A !important;
+    border-color: #40414A !important;
+    width: 350px;
+    height: 50px;
+    border-radius: 15px !important;
+}
+
+.home-page__authorization-form__button-auth {
+    font-size: 20px !important;
+    font-weight: bold !important;
+    color: #FFFFFF;
+    background-color: #40414A !important;
+    border-color: #40414A !important;
+    width: 350px;
+    height: 50px;
+    border-radius: 15px !important;
+}
+
+.button-auth__active {
+    color: #3E50B8 !important;
+    background-color: #2B2C32 !important;
+    border-color: #2B2C32 !important;
+}
+
+.home-page__authorization-form__button-register:hover {
+    color: #3E50B8 !important;
+    background-color: #2B2C32 !important;
+    border-color: #2B2C32 !important;
+}
+
+.home-page__authorization-form__button-auth:hover {
+    color: #3E50B8 !important;
+    background-color: #2B2C32 !important;
+    border-color: #2B2C32 !important;
+}
+
+.home-page__authorization-form__auth__login-label {
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+.home-page__authorization-form__auth__login-input {
+    border: none;
+    width: 400px;
+    background-color: #C4C4C4;
+    border-radius: 15px;
+}
+
+.home-page__authorization-form__auth__password-label {
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+.home-page__authorization-form__auth__password-input {
+    border: none;
+    width: 400px;
+    background-color: #C4C4C4;
+    border-radius: 15px;
+}
+
+.home-page__authorization-form__auth__button {
+    border: none;
+    font-size: 20px;
+    width: 350px;
+    height: 50px;
+    color: #FFFFFF;
+    background-color: #40414A;
+    border-radius: 15px !important;
+    transition: .15s;
+}
+
+.home-page__authorization-form__auth__button:hover {
+    color: #3E50B8 !important;
+    background-color: #2B2C32 !important;
+    border-color: #2B2C32 !important;
+}
+
+.home-page__authorization-form__registration__gender-selection__header {
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+.home-page__authorization-form__registration__gender-selection__male-radio {
+    margin-left: 30px;
+    -ms-transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+}
+
+.home-page__authorization-form__registration__gender-selection__male {
+    font-size: 24px;
+    color: #FFFFFF;
+    margin-left: 10px;
+}
+
+.home-page__authorization-form__registration__gender-selection__female-radio {
+    margin-left: 30px;
+    -ms-transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+}
+
+.home-page__authorization-form__registration__gender-selection__female {
+    font-size: 24px;
+    color: #FFFFFF;
+    margin-left: 10px;
+}
+
+.home-page__authorization-form__registration__class-selection__header {
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+.home-page__authorization-form__registration__class-selection__radio {
+    margin-left: 30px;
+    -ms-transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+}
+
+.home-page__authorization-form__registration__class-selection__warrior {
+    font-size: 24px;
+    color: #FFFFFF;
+    margin-left: 10px;
+}
+
+.home-page__authorization-form__registration__class-selection__wizard {
+    font-size: 24px;
+    color: #FFFFFF;
+    margin-left: 10px;
+}
+
+.home-page__authorization-form__registration__class-selection__hunter {
+    font-size: 24px;
+    color: #FFFFFF;
+    margin-left: 10px;
+}
+
+.home-page__authorization-form__registration__login-label {
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+.home-page__authorization-form__registration__login-input {
+    border: none;
+    width: 400px;
+    background-color: #C4C4C4;
+    border-radius: 15px;
+}
+
+.home-page__authorization-form__registration__password-label {
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+.home-page__authorization-form__registration__password-input {
+    border: none;
+    width: 400px;
+    background-color: #C4C4C4;
+    border-radius: 15px;
+}
+
+.home-page__authorization-form__registration__button {
+    border: none;
+    font-size: 20px;
+    width: 350px;
+    height: 50px;
+    color: #FFFFFF;
+    background-color: #40414A;
+    border-radius: 15px !important;
+    transition: .15s;
+}
+
+.home-page__authorization-form__registration__button:hover {
+    color: #3E50B8 !important;
+    background-color: #2B2C32 !important;
+    border-color: #2B2C32 !important;
+}
