@@ -10,9 +10,7 @@ use Illuminate\Support\Facades\DB;
 class AuthController extends Controller
 {
     public function auth(Request $request) {
-        $req = file_get_contents('php://input');
-        $req = json_decode($req);
-        $data = objectToarray($req);
+        $data = objectToarray(json_decode(file_get_contents('php://input')));
 
         $accounts = DB::table('accounts')->where('login', $data['login'])->where('password', md5($data['password']));
 
@@ -26,9 +24,7 @@ class AuthController extends Controller
     }
 
     public function register(Request $request) {
-        $req = file_get_contents('php://input');
-        $req = json_decode($req);
-        $data = objectToarray($req);
+        $data = objectToarray(json_decode(file_get_contents('php://input')));
 
         $accounts = DB::table('accounts')->where('login', $data['login']);
 
@@ -57,6 +53,22 @@ class AuthController extends Controller
             $result = 'false';
         }
 
-        echo $result == 'true' ? 'Вы успешно зарегистрировались!' : 'Аккаунт с таким именем уже зарегистрирован!';
+        echo $result;
+    }
+
+    public function getPlayerData(Request $request) {
+        $data = objectToarray(json_decode(file_get_contents('php://input')));
+
+        $accounts = DB::table('accounts')->where('login', $data['login'])->where('password', md5($data['password']));
+
+        $user = array(
+            'login' => $accounts->value('login'),
+            'level' => $accounts->value('level'),
+            'balance' => $accounts->value('balance'),
+            'gender' => $accounts->value('gender'),
+            'class' => $accounts->value('class'),
+        );
+
+        echo count(array_unique($user)) == 1 ? 'false' : json_encode($user);
     }
 }

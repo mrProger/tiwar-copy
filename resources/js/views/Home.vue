@@ -114,6 +114,10 @@
 
 <script>
   export default {
+    beforeMount() {
+      if (localStorage.getItem('player') !== null && localStorage.getItem('auth') !== null && localStorage.getItem('auth') == 'true')
+        document.location = 'game';
+    },
     methods: {
       showRegistrationForm: function() {
         if (document.getElementById('hidden-checker-auth').checked && !document.getElementById('home-page__authorization-form__auth').hidden) {
@@ -180,7 +184,27 @@
             })
           }).then((response) => {
             return response.text().then(function(text) {
-              alert(text);
+              if (text == 'true') {
+                fetch('/api/getplayerdata', {
+                  method: 'POST',
+                  headers: { 
+                    'Content-Type': 'application/json;charset=utf-8', 
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                  body: JSON.stringify({
+                    'login': login,
+                    'password': password
+                  })
+                }).then((response) => {
+                  return response.text().then(function(text) {
+                    localStorage.setItem('player', text);
+                    localStorage.setItem('auth', 'true');
+                    document.location = 'game';
+                  });
+                });
+              }
+              else
+                alert('Аккаунт с таким именем уже существует!');
             });
           });
         else
@@ -206,8 +230,25 @@
             })
           }).then((response) => {
             return response.text().then(function(text) {
-              if (text == 'true')
-                alert('Вы успешно вошли в аккаунт!');
+              if (text == 'true') {
+                fetch('/api/getplayerdata', {
+                  method: 'POST',
+                  headers: { 
+                    'Content-Type': 'application/json;charset=utf-8', 
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                  body: JSON.stringify({
+                    'login': login,
+                    'password': password
+                  })
+                }).then((response) => {
+                  return response.text().then(function(text) {
+                    localStorage.setItem('player', text);
+                    localStorage.setItem('auth', 'true');
+                    document.location = 'game';
+                  });
+                });
+              }
               else
                 alert('Неверные логин или пароль');
             });

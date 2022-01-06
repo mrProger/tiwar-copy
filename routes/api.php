@@ -23,3 +23,6 @@ Route::post('/auth', 'AuthController@auth');
 
 // Регистрация
 Route::post('/register', 'AuthController@register');
+
+// Получение данных игрока
+Route::post('/getplayerdata', 'AuthController@getPlayerData');

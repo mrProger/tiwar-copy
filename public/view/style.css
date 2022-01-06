@@ -1,5 +1,6 @@
 body {
     background-color: #636363 !important;
+    overflow-x: hidden !important;
 }
 
 .home-page__header__label {

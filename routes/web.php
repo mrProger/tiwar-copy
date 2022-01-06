@@ -18,8 +18,6 @@ Route::get('/', function () {
     return view('index');
 });
 
-// Авторизация
-Route::post('/auth', 'AuthController@auth');
-
-// Регистрация
-Route::post('/register', 'AuthController@register');
+Route::get('/game', function () {
+    return view('game');
+});
