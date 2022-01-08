@@ -5332,27 +5332,54 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     logoutButtonClick: function logoutButtonClick() {
-      localStorage.setItem('player', '');
-      localStorage.setItem('auth', 'false');
-      document.location = '/';
+      fetch('/api/writeallplayerdata', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({
+          'login': JSON.parse(localStorage.getItem('player'))['login'],
+          'level': JSON.parse(localStorage.getItem('player'))['level'],
+          'exp': JSON.parse(localStorage.getItem('player'))['exp'],
+          'balance': JSON.parse(localStorage.getItem('player'))['balance'],
+          'attack': JSON.parse(localStorage.getItem('player'))['attack'],
+          'weapon': JSON.parse(localStorage.getItem('player'))['weapon'],
+          'quest1': JSON.parse(localStorage.getItem('player'))['quest1'],
+          'quest2': JSON.parse(localStorage.getItem('player'))['quest2'],
+          'quest3': JSON.parse(localStorage.getItem('player'))['quest3'],
+          'quest4': JSON.parse(localStorage.getItem('player'))['quest4'],
+          'quest5': JSON.parse(localStorage.getItem('player'))['quest5'],
+          'quest6': JSON.parse(localStorage.getItem('player'))['quest6'],
+          'weapon1_buying': JSON.parse(localStorage.getItem('player'))['weapon1_buying'],
+          'weapon2_buying': JSON.parse(localStorage.getItem('player'))['weapon2_buying']
+        })
+      }).then(function (response) {
+        return response.text().then(function (text) {
+          if (text == 'true') {
+            localStorage.removeItem('player');
+            localStorage.removeItem('auth');
+            document.location = '/';
+          } else alert(text);
+        });
+      });
     },
     arenaButtonClick: function arenaButtonClick() {
       alert('Арена');
     },
-    careerButtonClick: function careerButtonClick() {
-      alert('Карьера');
+    questsButtonClick: function questsButtonClick() {
+      return document.location = 'quests';
     },
     shopButtonClick: function shopButtonClick() {
-      alert('Торговец');
+      return document.location = 'shop';
     },
     smithyButtonClick: function smithyButtonClick() {
       alert('Кузница');
     },
     myHeroButtonClick: function myHeroButtonClick() {
-      alert('Мой герой');
+      return document.location = 'myhero';
     },
     homeButtonClick: function homeButtonClick() {
-      document.location = 'game';
+      return document.location = 'game';
     }
   }
 });
@@ -5549,8 +5576,8 @@ __webpack_require__.r(__webpack_exports__);
         })
       }).then(function (response) {
         return response.text().then(function (text) {
-          if (text == 'true') {
-            fetch('/api/getplayerdata', {
+          if (text == 'true' || text == 1 || text == true || text == '1') {
+            fetch('/api/getallplayerdata', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json;charset=utf-8',
@@ -5589,7 +5616,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         return response.text().then(function (text) {
           if (text == 'true') {
-            fetch('/api/getplayerdata', {
+            fetch('/api/getallplayerdata', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json;charset=utf-8',
@@ -5615,6 +5642,933 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/MyHero.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/MyHero.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  beforeMount: function beforeMount() {
+    if ((localStorage.getItem('player') === null || localStorage.getItem('player') == '') && (localStorage.getItem('auth') === null || localStorage.getItem('auth') == 'false')) document.location = '/';
+  },
+  mounted: function mounted() {
+    document.getElementById('hero-name').innerText = JSON.parse(localStorage.getItem('player'))['login'];
+    document.getElementById('hero-gender').innerText = JSON.parse(localStorage.getItem('player'))['gender'];
+    document.getElementById('hero-class').innerText = JSON.parse(localStorage.getItem('player'))['class'];
+    document.getElementById('hero-level').innerText = JSON.parse(localStorage.getItem('player'))['level'];
+    document.getElementById('hero-balance').innerText = JSON.parse(localStorage.getItem('player'))['balance'];
+  },
+  methods: {
+    logoutButtonClick: function logoutButtonClick() {
+      fetch('/api/writeallplayerdata', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({
+          'login': JSON.parse(localStorage.getItem('player'))['login'],
+          'level': JSON.parse(localStorage.getItem('player'))['level'],
+          'exp': JSON.parse(localStorage.getItem('player'))['exp'],
+          'balance': JSON.parse(localStorage.getItem('player'))['balance'],
+          'attack': JSON.parse(localStorage.getItem('player'))['attack'],
+          'weapon': JSON.parse(localStorage.getItem('player'))['weapon'],
+          'quest1': JSON.parse(localStorage.getItem('player'))['quest1'],
+          'quest2': JSON.parse(localStorage.getItem('player'))['quest2'],
+          'quest3': JSON.parse(localStorage.getItem('player'))['quest3'],
+          'quest4': JSON.parse(localStorage.getItem('player'))['quest4'],
+          'quest5': JSON.parse(localStorage.getItem('player'))['quest5'],
+          'quest6': JSON.parse(localStorage.getItem('player'))['quest6'],
+          'weapon1_buying': JSON.parse(localStorage.getItem('player'))['weapon1_buying'],
+          'weapon2_buying': JSON.parse(localStorage.getItem('player'))['weapon2_buying']
+        })
+      }).then(function (response) {
+        return response.text().then(function (text) {
+          if (text == 'true') {
+            localStorage.removeItem('player');
+            localStorage.removeItem('auth');
+            document.location = '/';
+          } else alert(text);
+        });
+      });
+    },
+    myHeroButtonClick: function myHeroButtonClick() {
+      return document.location = 'myhero';
+    },
+    homeButtonClick: function homeButtonClick() {
+      return document.location = 'game';
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Quests.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Quests.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  beforeMount: function beforeMount() {
+    if ((localStorage.getItem('player') === null || localStorage.getItem('player') == '') && (localStorage.getItem('auth') === null || localStorage.getItem('auth') == 'false')) document.location = '/';
+  },
+  mounted: function mounted() {
+    if (JSON.parse(localStorage.getItem('player'))['quest1']) document.getElementById('quest1-button').innerText = 'Награда получена';else document.getElementById('quest1-button').innerText = 'Получить награду';
+    if (JSON.parse(localStorage.getItem('player'))['quest2']) document.getElementById('quest2-button').innerText = 'Награда получена';else document.getElementById('quest2-button').innerText = 'Получить награду';
+    if (JSON.parse(localStorage.getItem('player'))['quest3']) document.getElementById('quest3-button').innerText = 'Награда получена';else document.getElementById('quest3-button').innerText = 'Получить награду';
+    if (JSON.parse(localStorage.getItem('player'))['quest4']) document.getElementById('quest4-button').innerText = 'Награда получена';else document.getElementById('quest4-button').innerText = 'Получить награду';
+    if (JSON.parse(localStorage.getItem('player'))['quest5']) document.getElementById('quest5-button').innerText = 'Награда получена';else document.getElementById('quest5-button').innerText = 'Получить награду';
+    if (JSON.parse(localStorage.getItem('player'))['quest6']) document.getElementById('quest6-button').innerText = 'Награда получена';else document.getElementById('quest6-button').innerText = 'Получить награду';
+    document.getElementById('quests-page__gender').innerText = JSON.parse(localStorage.getItem('player'))['gender'];
+    document.getElementById('quests-page__login').innerText = JSON.parse(localStorage.getItem('player'))['login'];
+    document.getElementById('quests-page__level').innerText = JSON.parse(localStorage.getItem('player'))['level'];
+    document.getElementById('quests-page__space').innerText = '|';
+    document.getElementById('quests-page__balance').innerText = JSON.parse(localStorage.getItem('player'))['balance'];
+  },
+  methods: {
+    logoutButtonClick: function logoutButtonClick() {
+      fetch('/api/writeallplayerdata', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({
+          'login': JSON.parse(localStorage.getItem('player'))['login'],
+          'level': JSON.parse(localStorage.getItem('player'))['level'],
+          'exp': JSON.parse(localStorage.getItem('player'))['exp'],
+          'balance': JSON.parse(localStorage.getItem('player'))['balance'],
+          'quest1': JSON.parse(localStorage.getItem('player'))['quest1'],
+          'quest2': JSON.parse(localStorage.getItem('player'))['quest2'],
+          'quest3': JSON.parse(localStorage.getItem('player'))['quest3'],
+          'quest4': JSON.parse(localStorage.getItem('player'))['quest4'],
+          'quest5': JSON.parse(localStorage.getItem('player'))['quest5'],
+          'quest6': JSON.parse(localStorage.getItem('player'))['quest6']
+        })
+      }).then(function (response) {
+        return response.text().then(function (text) {
+          if (text == 'true') {
+            localStorage.removeItem('player');
+            localStorage.removeItem('auth');
+            document.location = '/';
+          } else alert(text);
+        });
+      });
+    },
+    completeQuest1: function completeQuest1() {
+      if (!JSON.parse(localStorage.getItem('player'))['quest1']) {
+        var object_ = JSON.parse(localStorage.getItem('player'));
+        object_['quest1'] = 1;
+        object_['exp'] += 5;
+        object_['balance'] += 50;
+        document.getElementById('quest1-button').innerText = 'Награда получена';
+        if (object_['exp'] >= 5 && object_['exp'] < 10) object_['level'] = 2;else if (object_['exp'] >= 10 && object_['exp'] < 15) object_['level'] = 3;else if (object_['exp'] >= 15 && object_['exp'] < 20) object_['level'] = 4;else if (object_['exp'] >= 20 && object_['exp'] < 25) object_['level'] = 5;
+        localStorage.setItem('player', JSON.stringify(object_));
+        fetch('/api/writeallplayerdata', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+          },
+          body: JSON.stringify({
+            'login': JSON.parse(localStorage.getItem('player'))['login'],
+            'level': JSON.parse(localStorage.getItem('player'))['level'],
+            'exp': JSON.parse(localStorage.getItem('player'))['exp'],
+            'balance': JSON.parse(localStorage.getItem('player'))['balance'],
+            'quest1': JSON.parse(localStorage.getItem('player'))['quest1'],
+            'quest2': JSON.parse(localStorage.getItem('player'))['quest2'],
+            'quest3': JSON.parse(localStorage.getItem('player'))['quest3'],
+            'quest4': JSON.parse(localStorage.getItem('player'))['quest4'],
+            'quest5': JSON.parse(localStorage.getItem('player'))['quest5'],
+            'quest6': JSON.parse(localStorage.getItem('player'))['quest6']
+          })
+        }).then(function (response) {
+          return response.text().then(function (text) {
+            if (text == 'false') alert(text);else document.location.reload();
+          });
+        });
+      }
+    },
+    completeQuest2: function completeQuest2() {
+      if (!JSON.parse(localStorage.getItem('player'))['quest2']) {
+        var object_ = JSON.parse(localStorage.getItem('player'));
+        object_['quest2'] = 1;
+        object_['exp'] += 5;
+        object_['balance'] += 50;
+        document.getElementById('quest2-button').innerText = 'Награда получена';
+        if (object_['exp'] >= 5 && object_['exp'] < 10) object_['level'] = 2;else if (object_['exp'] >= 10 && object_['exp'] < 15) object_['level'] = 3;else if (object_['exp'] >= 15 && object_['exp'] < 20) object_['level'] = 4;else if (object_['exp'] >= 20 && object_['exp'] < 25) object_['level'] = 5;
+        localStorage.setItem('player', JSON.stringify(object_));
+        fetch('/api/writeallplayerdata', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+          },
+          body: JSON.stringify({
+            'login': JSON.parse(localStorage.getItem('player'))['login'],
+            'level': JSON.parse(localStorage.getItem('player'))['level'],
+            'exp': JSON.parse(localStorage.getItem('player'))['exp'],
+            'balance': JSON.parse(localStorage.getItem('player'))['balance'],
+            'quest1': JSON.parse(localStorage.getItem('player'))['quest1'],
+            'quest2': JSON.parse(localStorage.getItem('player'))['quest2'],
+            'quest3': JSON.parse(localStorage.getItem('player'))['quest3'],
+            'quest4': JSON.parse(localStorage.getItem('player'))['quest4'],
+            'quest5': JSON.parse(localStorage.getItem('player'))['quest5'],
+            'quest6': JSON.parse(localStorage.getItem('player'))['quest6']
+          })
+        }).then(function (response) {
+          return response.text().then(function (text) {
+            if (text == 'false') alert(text);else document.location.reload();
+          });
+        });
+      }
+    },
+    completeQuest3: function completeQuest3() {
+      if (!JSON.parse(localStorage.getItem('player'))['quest3']) {
+        var object_ = JSON.parse(localStorage.getItem('player'));
+        object_['quest3'] = 1;
+        object_['exp'] += 5;
+        object_['balance'] += 50;
+        document.getElementById('quest3-button').innerText = 'Награда получена';
+        if (object_['exp'] >= 5 && object_['exp'] < 10) object_['level'] = 2;else if (object_['exp'] >= 10 && object_['exp'] < 15) object_['level'] = 3;else if (object_['exp'] >= 15 && object_['exp'] < 20) object_['level'] = 4;else if (object_['exp'] >= 20 && object_['exp'] < 25) object_['level'] = 5;
+        localStorage.setItem('player', JSON.stringify(object_));
+        fetch('/api/writeallplayerdata', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+          },
+          body: JSON.stringify({
+            'login': JSON.parse(localStorage.getItem('player'))['login'],
+            'level': JSON.parse(localStorage.getItem('player'))['level'],
+            'exp': JSON.parse(localStorage.getItem('player'))['exp'],
+            'balance': JSON.parse(localStorage.getItem('player'))['balance'],
+            'quest1': JSON.parse(localStorage.getItem('player'))['quest1'],
+            'quest2': JSON.parse(localStorage.getItem('player'))['quest2'],
+            'quest3': JSON.parse(localStorage.getItem('player'))['quest3'],
+            'quest4': JSON.parse(localStorage.getItem('player'))['quest4'],
+            'quest5': JSON.parse(localStorage.getItem('player'))['quest5'],
+            'quest6': JSON.parse(localStorage.getItem('player'))['quest6']
+          })
+        }).then(function (response) {
+          return response.text().then(function (text) {
+            if (text == 'false') alert(text);else document.location.reload();
+          });
+        });
+      }
+    },
+    completeQuest4: function completeQuest4() {
+      if (!JSON.parse(localStorage.getItem('player'))['quest4']) {
+        var object_ = JSON.parse(localStorage.getItem('player'));
+        object_['quest4'] = 1;
+        object_['exp'] += 5;
+        object_['balance'] += 50;
+        document.getElementById('quest4-button').innerText = 'Награда получена';
+        if (object_['exp'] >= 5 && object_['exp'] < 10) object_['level'] = 2;else if (object_['exp'] >= 10 && object_['exp'] < 15) object_['level'] = 3;else if (object_['exp'] >= 15 && object_['exp'] < 20) object_['level'] = 4;else if (object_['exp'] >= 20 && object_['exp'] < 25) object_['level'] = 5;
+        localStorage.setItem('player', JSON.stringify(object_));
+        fetch('/api/writeallplayerdata', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+          },
+          body: JSON.stringify({
+            'login': JSON.parse(localStorage.getItem('player'))['login'],
+            'level': JSON.parse(localStorage.getItem('player'))['level'],
+            'exp': JSON.parse(localStorage.getItem('player'))['exp'],
+            'balance': JSON.parse(localStorage.getItem('player'))['balance'],
+            'quest1': JSON.parse(localStorage.getItem('player'))['quest1'],
+            'quest2': JSON.parse(localStorage.getItem('player'))['quest2'],
+            'quest3': JSON.parse(localStorage.getItem('player'))['quest3'],
+            'quest4': JSON.parse(localStorage.getItem('player'))['quest4'],
+            'quest5': JSON.parse(localStorage.getItem('player'))['quest5'],
+            'quest6': JSON.parse(localStorage.getItem('player'))['quest6']
+          })
+        }).then(function (response) {
+          return response.text().then(function (text) {
+            if (text == 'false') alert(text);else document.location.reload();
+          });
+        });
+      }
+    },
+    completeQuest5: function completeQuest5() {
+      if (!JSON.parse(localStorage.getItem('player'))['quest5']) {
+        var object_ = JSON.parse(localStorage.getItem('player'));
+        object_['quest5'] = 1;
+        object_['exp'] += 5;
+        object_['balance'] += 50;
+        document.getElementById('quest5-button').innerText = 'Награда получена';
+        if (object_['exp'] >= 5 && object_['exp'] < 10) object_['level'] = 2;else if (object_['exp'] >= 10 && object_['exp'] < 15) object_['level'] = 3;else if (object_['exp'] >= 15 && object_['exp'] < 20) object_['level'] = 4;else if (object_['exp'] >= 20 && object_['exp'] < 25) object_['level'] = 5;
+        localStorage.setItem('player', JSON.stringify(object_));
+        fetch('/api/writeallplayerdata', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+          },
+          body: JSON.stringify({
+            'login': JSON.parse(localStorage.getItem('player'))['login'],
+            'level': JSON.parse(localStorage.getItem('player'))['level'],
+            'exp': JSON.parse(localStorage.getItem('player'))['exp'],
+            'balance': JSON.parse(localStorage.getItem('player'))['balance'],
+            'quest1': JSON.parse(localStorage.getItem('player'))['quest1'],
+            'quest2': JSON.parse(localStorage.getItem('player'))['quest2'],
+            'quest3': JSON.parse(localStorage.getItem('player'))['quest3'],
+            'quest4': JSON.parse(localStorage.getItem('player'))['quest4'],
+            'quest5': JSON.parse(localStorage.getItem('player'))['quest5'],
+            'quest6': JSON.parse(localStorage.getItem('player'))['quest6'],
+            'weapon1_buying': JSON.parse(localStorage.getItem('player'))['weapon1_buying'],
+            'weapon2_buying': JSON.parse(localStorage.getItem('player'))['weapon2_buying']
+          })
+        }).then(function (response) {
+          return response.text().then(function (text) {
+            if (text == 'false') alert(text);else document.location.reload();
+          });
+        });
+      }
+    },
+    completeQuest6: function completeQuest6() {
+      if (!JSON.parse(localStorage.getItem('player'))['quest6']) {
+        var object_ = JSON.parse(localStorage.getItem('player'));
+        object_['quest6'] = 1;
+        object_['exp'] += 5;
+        object_['balance'] += 50;
+        document.getElementById('quest6-button').innerText = 'Награда получена';
+        if (object_['exp'] >= 5 && object_['exp'] < 10) object_['level'] = 2;else if (object_['exp'] >= 10 && object_['exp'] < 15) object_['level'] = 3;else if (object_['exp'] >= 15 && object_['exp'] < 20) object_['level'] = 4;else if (object_['exp'] >= 20 && object_['exp'] < 25) object_['level'] = 5;
+        localStorage.setItem('player', JSON.stringify(object_));
+        fetch('/api/writeallplayerdata', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+          },
+          body: JSON.stringify({
+            'login': JSON.parse(localStorage.getItem('player'))['login'],
+            'level': JSON.parse(localStorage.getItem('player'))['level'],
+            'exp': JSON.parse(localStorage.getItem('player'))['exp'],
+            'balance': JSON.parse(localStorage.getItem('player'))['balance'],
+            'attack': JSON.parse(localStorage.getItem('player'))['attack'],
+            'weapon': JSON.parse(localStorage.getItem('player'))['weapon'],
+            'quest1': JSON.parse(localStorage.getItem('player'))['quest1'],
+            'quest2': JSON.parse(localStorage.getItem('player'))['quest2'],
+            'quest3': JSON.parse(localStorage.getItem('player'))['quest3'],
+            'quest4': JSON.parse(localStorage.getItem('player'))['quest4'],
+            'quest5': JSON.parse(localStorage.getItem('player'))['quest5'],
+            'quest6': JSON.parse(localStorage.getItem('player'))['quest6'],
+            'weapon1_buying': JSON.parse(localStorage.getItem('player'))['weapon1_buying'],
+            'weapon2_buying': JSON.parse(localStorage.getItem('player'))['weapon2_buying']
+          })
+        }).then(function (response) {
+          return response.text().then(function (text) {
+            if (text == 'false') alert(text);else document.location.reload();
+          });
+        });
+      }
+    },
+    myHeroButtonClick: function myHeroButtonClick() {
+      return document.location = 'myhero';
+    },
+    homeButtonClick: function homeButtonClick() {
+      return document.location = 'game';
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Shop.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Shop.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  beforeMount: function beforeMount() {
+    if ((localStorage.getItem('player') === null || localStorage.getItem('player') == '') && (localStorage.getItem('auth') === null || localStorage.getItem('auth') == 'false')) document.location = '/';
+  },
+  mounted: function mounted() {
+    if (JSON.parse(localStorage.getItem('player'))['class'] == 'warrior') {
+      if (JSON.parse(localStorage.getItem('player'))['weapon1_buying'] == 1) document.getElementById('weapon-warrior-1').innerText = 'Куплено';else document.getElementById('weapon-warrior-1').innerText = 'Купить';
+      if (JSON.parse(localStorage.getItem('player'))['weapon2_buying'] == 1) document.getElementById('weapon-warrior-2').innerText = 'Куплено';else document.getElementById('weapon-warrior-2').innerText = 'Купить';
+    } else if (JSON.parse(localStorage.getItem('player'))['class'] == 'wizard') {
+      if (JSON.parse(localStorage.getItem('player'))['weapon1_buying'] == 1) document.getElementById('weapon-wizard-1').innerText = 'Куплено';else document.getElementById('weapon-wizard-1').innerText = 'Купить';
+      if (JSON.parse(localStorage.getItem('player'))['weapon2_buying'] == 1) document.getElementById('weapon-wizard-2').innerText = 'Куплено';else document.getElementById('weapon-wizard-2').innerText = 'Купить';
+    } else if (JSON.parse(localStorage.getItem('player'))['class'] == 'hunter') {
+      if (JSON.parse(localStorage.getItem('player'))['weapon1_buying'] == 1) document.getElementById('weapon-hunter-1').innerText = 'Куплено';else document.getElementById('weapon-hunter-1').innerText = 'Купить';
+      if (JSON.parse(localStorage.getItem('player'))['weapon2_buying'] == 1) document.getElementById('weapon-hunter-2').innerText = 'Куплено';else document.getElementById('weapon-hunter-2').innerText = 'Купить';
+    }
+
+    document.getElementById('shop-page__gender').innerText = JSON.parse(localStorage.getItem('player'))['gender'];
+    document.getElementById('shop-page__login').innerText = JSON.parse(localStorage.getItem('player'))['login'];
+    document.getElementById('shop-page__level').innerText = JSON.parse(localStorage.getItem('player'))['level'];
+    document.getElementById('shop-page__space').innerText = '|';
+    document.getElementById('shop-page__balance').innerText = JSON.parse(localStorage.getItem('player'))['balance'];
+  },
+  methods: {
+    logoutButtonClick: function logoutButtonClick() {
+      fetch('/api/writeallplayerdata', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({
+          'login': JSON.parse(localStorage.getItem('player'))['login'],
+          'level': JSON.parse(localStorage.getItem('player'))['level'],
+          'exp': JSON.parse(localStorage.getItem('player'))['exp'],
+          'balance': JSON.parse(localStorage.getItem('player'))['balance'],
+          'attack': JSON.parse(localStorage.getItem('player'))['attack'],
+          'weapon': JSON.parse(localStorage.getItem('player'))['weapon'],
+          'quest1': JSON.parse(localStorage.getItem('player'))['quest1'],
+          'quest2': JSON.parse(localStorage.getItem('player'))['quest2'],
+          'quest3': JSON.parse(localStorage.getItem('player'))['quest3'],
+          'quest4': JSON.parse(localStorage.getItem('player'))['quest4'],
+          'quest5': JSON.parse(localStorage.getItem('player'))['quest5'],
+          'quest6': JSON.parse(localStorage.getItem('player'))['quest6'],
+          'weapon1_buying': JSON.parse(localStorage.getItem('player'))['weapon1_buying'],
+          'weapon2_buying': JSON.parse(localStorage.getItem('player'))['weapon2_buying']
+        })
+      }).then(function (response) {
+        return response.text().then(function (text) {
+          if (text == 'true') {
+            localStorage.removeItem('player');
+            localStorage.removeItem('auth');
+            document.location = '/';
+          } else alert(text);
+        });
+      });
+    },
+    weaponWarrior1: function weaponWarrior1() {
+      var object_ = JSON.parse(localStorage.getItem('player'));
+
+      if (object_['class'] == 'warrior' && object_['weapon1_buying'] == 0) {
+        if (object_['balance'] >= 100) {
+          object_['balance'] -= 100;
+          object_['weapon'] = 1;
+          object_['attack'] += 10;
+          object_['weapon1_buying'] = 1;
+          document.getElementById('weapon-warrior-1').innerText = 'Куплено';
+          localStorage.setItem('player', JSON.stringify(object_));
+          fetch('/api/writeallplayerdata', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify({
+              'login': JSON.parse(localStorage.getItem('player'))['login'],
+              'level': JSON.parse(localStorage.getItem('player'))['level'],
+              'exp': JSON.parse(localStorage.getItem('player'))['exp'],
+              'balance': JSON.parse(localStorage.getItem('player'))['balance'],
+              'quest1': JSON.parse(localStorage.getItem('player'))['quest1'],
+              'quest2': JSON.parse(localStorage.getItem('player'))['quest2'],
+              'quest3': JSON.parse(localStorage.getItem('player'))['quest3'],
+              'quest4': JSON.parse(localStorage.getItem('player'))['quest4'],
+              'quest5': JSON.parse(localStorage.getItem('player'))['quest5'],
+              'quest6': JSON.parse(localStorage.getItem('player'))['quest6'],
+              'weapon1_buying': JSON.parse(localStorage.getItem('player'))['weapon1_buying'],
+              'weapon2_buying': JSON.parse(localStorage.getItem('player'))['weapon2_buying']
+            })
+          }).then(function (response) {
+            return response.text().then(function (text) {
+              if (text == 'false') alert(text);else document.location.reload();
+            });
+          });
+        } else alert('Недостаточно средств');
+      } else alert('Для покупки нужен другой класс');
+    },
+    weaponWarrior2: function weaponWarrior2() {
+      var object_ = JSON.parse(localStorage.getItem('player'));
+
+      if (object_['class'] == 'warrior' && object_['weapon2_buying'] == 0) {
+        if (object_['balance'] >= 200) {
+          object_['balance'] -= 200;
+          object_['weapon'] = 2;
+          object_['attack'] += 20;
+          object_['weapon2_buying'] = 1;
+          document.getElementById('weapon-warrior-2').innerText = 'Куплено';
+          localStorage.setItem('player', JSON.stringify(object_));
+          fetch('/api/writeallplayerdata', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify({
+              'login': JSON.parse(localStorage.getItem('player'))['login'],
+              'level': JSON.parse(localStorage.getItem('player'))['level'],
+              'exp': JSON.parse(localStorage.getItem('player'))['exp'],
+              'balance': JSON.parse(localStorage.getItem('player'))['balance'],
+              'quest1': JSON.parse(localStorage.getItem('player'))['quest1'],
+              'quest2': JSON.parse(localStorage.getItem('player'))['quest2'],
+              'quest3': JSON.parse(localStorage.getItem('player'))['quest3'],
+              'quest4': JSON.parse(localStorage.getItem('player'))['quest4'],
+              'quest5': JSON.parse(localStorage.getItem('player'))['quest5'],
+              'quest6': JSON.parse(localStorage.getItem('player'))['quest6'],
+              'weapon1_buying': JSON.parse(localStorage.getItem('player'))['weapon1_buying'],
+              'weapon2_buying': JSON.parse(localStorage.getItem('player'))['weapon2_buying']
+            })
+          }).then(function (response) {
+            return response.text().then(function (text) {
+              if (text == 'false') alert(text);else document.location.reload();
+            });
+          });
+        } else alert('Недостаточно средств');
+      } else alert('Для покупки нужен другой класс');
+    },
+    weaponWizard1: function weaponWizard1() {
+      var object_ = JSON.parse(localStorage.getItem('player'));
+
+      if (object_['class'] == 'wizard' && object_['weapon1_buying'] == 0) {
+        if (object_['balance'] >= 100) {
+          object_['balance'] -= 100;
+          object_['weapon'] = 1;
+          object_['attack'] += 10;
+          object_['weapon1_buying'] = 1;
+          document.getElementById('weapon-wizard-1').innerText = 'Куплено';
+          localStorage.setItem('player', JSON.stringify(object_));
+          fetch('/api/writeallplayerdata', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify({
+              'login': JSON.parse(localStorage.getItem('player'))['login'],
+              'level': JSON.parse(localStorage.getItem('player'))['level'],
+              'exp': JSON.parse(localStorage.getItem('player'))['exp'],
+              'balance': JSON.parse(localStorage.getItem('player'))['balance'],
+              'quest1': JSON.parse(localStorage.getItem('player'))['quest1'],
+              'quest2': JSON.parse(localStorage.getItem('player'))['quest2'],
+              'quest3': JSON.parse(localStorage.getItem('player'))['quest3'],
+              'quest4': JSON.parse(localStorage.getItem('player'))['quest4'],
+              'quest5': JSON.parse(localStorage.getItem('player'))['quest5'],
+              'quest6': JSON.parse(localStorage.getItem('player'))['quest6'],
+              'weapon1_buying': JSON.parse(localStorage.getItem('player'))['weapon1_buying'],
+              'weapon2_buying': JSON.parse(localStorage.getItem('player'))['weapon2_buying']
+            })
+          }).then(function (response) {
+            return response.text().then(function (text) {
+              if (text == 'false') alert(text);else document.location.reload();
+            });
+          });
+        } else alert('Недостаточно средств');
+      } else alert('Для покупки нужен другой класс');
+    },
+    weaponWizard2: function weaponWizard2() {
+      var object_ = JSON.parse(localStorage.getItem('player'));
+
+      if (object_['class'] == 'wizard' && object_['weapon2_buying'] == 0) {
+        if (object_['balance'] >= 200) {
+          object_['balance'] -= 200;
+          object_['weapon'] = 2;
+          object_['attack'] += 20;
+          object_['weapon1_buying'] = 1;
+          document.getElementById('weapon-wizard-2').innerText = 'Куплено';
+          localStorage.setItem('player', JSON.stringify(object_));
+          fetch('/api/writeallplayerdata', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify({
+              'login': JSON.parse(localStorage.getItem('player'))['login'],
+              'level': JSON.parse(localStorage.getItem('player'))['level'],
+              'exp': JSON.parse(localStorage.getItem('player'))['exp'],
+              'balance': JSON.parse(localStorage.getItem('player'))['balance'],
+              'quest1': JSON.parse(localStorage.getItem('player'))['quest1'],
+              'quest2': JSON.parse(localStorage.getItem('player'))['quest2'],
+              'quest3': JSON.parse(localStorage.getItem('player'))['quest3'],
+              'quest4': JSON.parse(localStorage.getItem('player'))['quest4'],
+              'quest5': JSON.parse(localStorage.getItem('player'))['quest5'],
+              'quest6': JSON.parse(localStorage.getItem('player'))['quest6'],
+              'weapon1_buying': JSON.parse(localStorage.getItem('player'))['weapon1_buying'],
+              'weapon2_buying': JSON.parse(localStorage.getItem('player'))['weapon2_buying']
+            })
+          }).then(function (response) {
+            return response.text().then(function (text) {
+              if (text == 'false') alert(text);else document.location.reload();
+            });
+          });
+        } else alert('Недостаточно средств');
+      } else alert('Для покупки нужен другой класс');
+    },
+    weaponHunter1: function weaponHunter1() {
+      var object_ = JSON.parse(localStorage.getItem('player'));
+
+      if (object_['class'] == 'hunter' && object_['weapon1_buying'] == 0) {
+        if (object_['balance'] >= 100) {
+          object_['balance'] -= 100;
+          object_['weapon'] = 1;
+          object_['attack'] += 10;
+          object_['weapon1_buying'] = 1;
+          document.getElementById('weapon-hunter-1').innerText = 'Куплено';
+          localStorage.setItem('player', JSON.stringify(object_));
+          fetch('/api/writeallplayerdata', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify({
+              'login': JSON.parse(localStorage.getItem('player'))['login'],
+              'level': JSON.parse(localStorage.getItem('player'))['level'],
+              'exp': JSON.parse(localStorage.getItem('player'))['exp'],
+              'balance': JSON.parse(localStorage.getItem('player'))['balance'],
+              'quest1': JSON.parse(localStorage.getItem('player'))['quest1'],
+              'quest2': JSON.parse(localStorage.getItem('player'))['quest2'],
+              'quest3': JSON.parse(localStorage.getItem('player'))['quest3'],
+              'quest4': JSON.parse(localStorage.getItem('player'))['quest4'],
+              'quest5': JSON.parse(localStorage.getItem('player'))['quest5'],
+              'quest6': JSON.parse(localStorage.getItem('player'))['quest6'],
+              'weapon1_buying': JSON.parse(localStorage.getItem('player'))['weapon1_buying'],
+              'weapon2_buying': JSON.parse(localStorage.getItem('player'))['weapon2_buying']
+            })
+          }).then(function (response) {
+            return response.text().then(function (text) {
+              if (text == 'false') alert(text);else document.location.reload();
+            });
+          });
+        } else alert('Недостаточно средств');
+      } else alert('Для покупки нужен другой класс');
+    },
+    weaponHunter2: function weaponHunter2() {
+      var object_ = JSON.parse(localStorage.getItem('player'));
+
+      if (object_['class'] == 'hunter' && object_['weapon2_buying'] == 0) {
+        if (object_['balance'] >= 200) {
+          object_['balance'] -= 200;
+          object_['weapon'] = 2;
+          object_['attack'] += 20;
+          object_['weapon2_buying'] = 1;
+          document.getElementById('weapon-hunter-2').innerText = 'Куплено';
+          localStorage.setItem('player', JSON.stringify(object_));
+          fetch('/api/writeallplayerdata', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify({
+              'login': JSON.parse(localStorage.getItem('player'))['login'],
+              'level': JSON.parse(localStorage.getItem('player'))['level'],
+              'exp': JSON.parse(localStorage.getItem('player'))['exp'],
+              'balance': JSON.parse(localStorage.getItem('player'))['balance'],
+              'quest1': JSON.parse(localStorage.getItem('player'))['quest1'],
+              'quest2': JSON.parse(localStorage.getItem('player'))['quest2'],
+              'quest3': JSON.parse(localStorage.getItem('player'))['quest3'],
+              'quest4': JSON.parse(localStorage.getItem('player'))['quest4'],
+              'quest5': JSON.parse(localStorage.getItem('player'))['quest5'],
+              'quest6': JSON.parse(localStorage.getItem('player'))['quest6'],
+              'weapon1_buying': JSON.parse(localStorage.getItem('player'))['weapon1_buying'],
+              'weapon2_buying': JSON.parse(localStorage.getItem('player'))['weapon2_buying']
+            })
+          }).then(function (response) {
+            return response.text().then(function (text) {
+              if (text == 'false') alert(text);else document.location.reload();
+            });
+          });
+        } else alert('Недостаточно средств');
+      } else alert('Для покупки нужен другой класс');
+    },
+    myHeroButtonClick: function myHeroButtonClick() {
+      return document.location = 'myhero';
+    },
+    homeButtonClick: function homeButtonClick() {
+      return document.location = 'game';
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -5623,17 +6577,26 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var _views_Home_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./views/Home.vue */ "./resources/js/views/Home.vue");
 /* harmony import */ var _views_Game_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./views/Game.vue */ "./resources/js/views/Game.vue");
+/* harmony import */ var _views_MyHero_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./views/MyHero.vue */ "./resources/js/views/MyHero.vue");
+/* harmony import */ var _views_Quests_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./views/Quests.vue */ "./resources/js/views/Quests.vue");
+/* harmony import */ var _views_Shop_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./views/Shop.vue */ "./resources/js/views/Shop.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('home-page', _views_Home_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('game-page', _views_Game_vue__WEBPACK_IMPORTED_MODULE_1__["default"]);
-var app = new vue__WEBPACK_IMPORTED_MODULE_2__["default"]({
+
+
+
+vue__WEBPACK_IMPORTED_MODULE_5__["default"].component('home-page', _views_Home_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_5__["default"].component('game-page', _views_Game_vue__WEBPACK_IMPORTED_MODULE_1__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_5__["default"].component('myhero-page', _views_MyHero_vue__WEBPACK_IMPORTED_MODULE_2__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_5__["default"].component('quests-page', _views_Quests_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_5__["default"].component('shop-page', _views_Shop_vue__WEBPACK_IMPORTED_MODULE_4__["default"]);
+var app = new vue__WEBPACK_IMPORTED_MODULE_5__["default"]({
   el: '#app'
 });
 
@@ -10719,7 +11682,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.game-page__underline {\n    border: 3px solid #C8C8C8;\n    border-radius: 10px;\n}\n.game-page__button {\n    font-size: 20px !important;\n    font-weight: bold !important;\n    color: #FFFFFF;\n    background-color: #40414A !important;\n    border-color: #40414A !important;\n    width: 350px;\n    height: 50px;\n    border-radius: 15px !important;\n}\n.game-page__button:hover {\n    color: #3E50B8 !important;\n    background-color: #2B2C32 !important;\n    border-color: #2B2C32 !important;\n}\n.game-page__hero-gender {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.game-page__hero-name {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.game-page__hero-level {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.game-page__hero-balance {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.game-pags__hero-space {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.game-page__underline {\n    border: 3px solid #C8C8C8;\n    border-radius: 10px;\n}\n.game-page__button {\n    font-size: 20px !important;\n    font-weight: bold !important;\n    color: #FFFFFF;\n    background-color: #40414A !important;\n    border-color: #40414A !important;\n    width: 350px;\n    height: 50px;\n    border-radius: 15px !important;\n}\n.game-page__button:hover {\n    color: #3E50B8 !important;\n    background-color: #2B2C32 !important;\n    border-color: #2B2C32 !important;\n}\n.game-page__hero-gender {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.game-page__hero-name {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.game-page__hero-level {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.game-page__hero-balance {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.game-page__hero-space {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10744,6 +11707,78 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "\n.hidden-block-registration {\n  opacity: 0;\n  margin-top: 10px;\n  transition: opacity .5s;\n}\n.hidden-block-auth {\n  opacity: 0;\n  margin-top: 10px;\n  transition: opacity .5s;\n}\n#hidden-checker-registration {\n  display: none;\n}\n#hidden-checker-auth {\n  display: none;\n}\n#hidden-checker-registration:checked {\n  position: static;\n}\n#hidden-checker-auth:checked {\n  position: static;\n}\n#hidden-checker-registration:checked~.hidden-block-registration {\n  opacity: 1;\n}\n#hidden-checker-auth:checked~.hidden-block-auth {\n  opacity: 1;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/MyHero.vue?vue&type=style&index=0&lang=css&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/MyHero.vue?vue&type=style&index=0&lang=css& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.myhero-page__underline {\n    border: 3px solid #C8C8C8;\n    border-radius: 10px;\n}\n.myhero-page__button {\n    font-size: 20px !important;\n    font-weight: bold !important;\n    color: #FFFFFF;\n    background-color: #40414A !important;\n    border-color: #40414A !important;\n    width: 350px;\n    height: 50px;\n    border-radius: 15px !important;\n}\n.myhero-page__button:hover {\n    color: #3E50B8 !important;\n    background-color: #2B2C32 !important;\n    border-color: #2B2C32 !important;\n}\n.myhero-page__hero-gender {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.myhero-page__hero-name {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.myhero-page__hero-level {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.myhero-page__hero-balance {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.myhero-page__hero-class {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.myhero-page__hero-gender-label {\n    font-size: 26px;\n    font-weight: bold;\n    color: #FFFFFF;\n}\n.myhero-page__hero-name-label {\n    font-size: 26px;\n    font-weight: bold;\n    color: #FFFFFF;\n}\n.myhero-page__hero-level-label {\n    font-size: 26px;\n    font-weight: bold;\n    color: #FFFFFF;\n}\n.myhero-page__hero-balance-label {\n    font-size: 26px;\n    font-weight: bold;\n    color: #FFFFFF;\n}\n.myhero-page__hero-class-label {\n    font-size: 26px;\n    font-weight: bold;\n    color: #FFFFFF;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Quests.vue?vue&type=style&index=0&lang=css&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Quests.vue?vue&type=style&index=0&lang=css& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.quests-page__underline {\n    border: 3px solid #C8C8C8;\n    border-radius: 10px;\n}\n.quests-page__button {\n    font-size: 20px !important;\n    font-weight: bold !important;\n    color: #FFFFFF;\n    background-color: #40414A !important;\n    border-color: #40414A !important;\n    width: 300px;\n    height: 50px;\n    border-radius: 15px !important;\n}\n.quests-page__button:hover {\n    color: #3E50B8 !important;\n    background-color: #2B2C32 !important;\n    border-color: #2B2C32 !important;\n}\n.quests-page__button__item {\n    font-size: 20px !important;\n    font-weight: bold !important;\n    color: #FFFFFF;\n    background-color: #40414A !important;\n    border-color: #40414A !important;\n    width: 210px;\n    height: 50px;\n    border-radius: 15px !important;\n}\n.quests-page__button__item:hover {\n    color: #3E50B8 !important;\n    background-color: #2B2C32 !important;\n    border-color: #2B2C32 !important;\n}\n.quests-page__hero-gender {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.quests-page__hero-name {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.quests-page__hero-level {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.quests-page__hero-balance {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.quests-page__hero-space {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.quests-page__header {\n    font-size: 24px;\n    color: #FFFFFF;\n}\n.quests-page__price {\n    font-size: 20px;\n    color: #FFFFFF;\n}\n.card {\n    background-color: #636363 !important;\n    display: inline-block !important;\n    border: none !important;\n}\n.quests-page__award {\n    font-size: 20px;\n    color: #FFFFFF;\n}\n.quests-page__requirement {\n    font-size: 20px;\n    color: #FFFFFF;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Shop.vue?vue&type=style&index=0&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Shop.vue?vue&type=style&index=0&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.shop-page__underline {\n    border: 3px solid #C8C8C8;\n    border-radius: 10px;\n}\n.shop-page__button {\n    font-size: 20px !important;\n    font-weight: bold !important;\n    color: #FFFFFF;\n    background-color: #40414A !important;\n    border-color: #40414A !important;\n    width: 300px;\n    height: 50px;\n    border-radius: 15px !important;\n}\n.shop-page__button:hover {\n    color: #3E50B8 !important;\n    background-color: #2B2C32 !important;\n    border-color: #2B2C32 !important;\n}\n.shop-page__button__item {\n    font-size: 20px !important;\n    font-weight: bold !important;\n    color: #FFFFFF;\n    background-color: #40414A !important;\n    border-color: #40414A !important;\n    width: 200px;\n    height: 50px;\n    border-radius: 15px !important;\n}\n.shop-page__button__item:hover {\n    color: #3E50B8 !important;\n    background-color: #2B2C32 !important;\n    border-color: #2B2C32 !important;\n}\n.shop-page__hero-gender {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.shop-page__hero-name {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.shop-page__hero-level {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.shop-page__hero-balance {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.shop-page__hero-space {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.shop-page__header {\n    font-size: 24px;\n    color: #FFFFFF;\n}\n.shop-page__price {\n    font-size: 20px;\n    color: #FFFFFF;\n}\n.card {\n    background-color: #636363 !important;\n    display: inline-block !important;\n    border: none !important;\n}\n.shop-page__attribute {\n    font-size: 20px;\n    color: #FFFFFF;\n}\n.shop-page__class {\n    font-size: 20px;\n    color: #FFFFFF;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -28305,6 +29340,96 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/MyHero.vue?vue&type=style&index=0&lang=css&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/MyHero.vue?vue&type=style&index=0&lang=css& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MyHero_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MyHero.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/MyHero.vue?vue&type=style&index=0&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MyHero_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MyHero_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Quests.vue?vue&type=style&index=0&lang=css&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Quests.vue?vue&type=style&index=0&lang=css& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Quests_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Quests.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Quests.vue?vue&type=style&index=0&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Quests_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Quests_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Shop.vue?vue&type=style&index=0&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Shop.vue?vue&type=style&index=0&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Shop_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Shop.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Shop.vue?vue&type=style&index=0&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Shop_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Shop_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
 /*!****************************************************************************!*\
   !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
@@ -28666,6 +29791,129 @@ component.options.__file = "resources/js/views/Home.vue"
 
 /***/ }),
 
+/***/ "./resources/js/views/MyHero.vue":
+/*!***************************************!*\
+  !*** ./resources/js/views/MyHero.vue ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _MyHero_vue_vue_type_template_id_a5ddfab6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MyHero.vue?vue&type=template&id=a5ddfab6& */ "./resources/js/views/MyHero.vue?vue&type=template&id=a5ddfab6&");
+/* harmony import */ var _MyHero_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MyHero.vue?vue&type=script&lang=js& */ "./resources/js/views/MyHero.vue?vue&type=script&lang=js&");
+/* harmony import */ var _MyHero_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MyHero.vue?vue&type=style&index=0&lang=css& */ "./resources/js/views/MyHero.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _MyHero_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _MyHero_vue_vue_type_template_id_a5ddfab6___WEBPACK_IMPORTED_MODULE_0__.render,
+  _MyHero_vue_vue_type_template_id_a5ddfab6___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/MyHero.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/Quests.vue":
+/*!***************************************!*\
+  !*** ./resources/js/views/Quests.vue ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Quests_vue_vue_type_template_id_4c3f25a0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Quests.vue?vue&type=template&id=4c3f25a0& */ "./resources/js/views/Quests.vue?vue&type=template&id=4c3f25a0&");
+/* harmony import */ var _Quests_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Quests.vue?vue&type=script&lang=js& */ "./resources/js/views/Quests.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Quests_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Quests.vue?vue&type=style&index=0&lang=css& */ "./resources/js/views/Quests.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _Quests_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Quests_vue_vue_type_template_id_4c3f25a0___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Quests_vue_vue_type_template_id_4c3f25a0___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/Quests.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/Shop.vue":
+/*!*************************************!*\
+  !*** ./resources/js/views/Shop.vue ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Shop_vue_vue_type_template_id_530160d6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Shop.vue?vue&type=template&id=530160d6& */ "./resources/js/views/Shop.vue?vue&type=template&id=530160d6&");
+/* harmony import */ var _Shop_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Shop.vue?vue&type=script&lang=js& */ "./resources/js/views/Shop.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Shop_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Shop.vue?vue&type=style&index=0&lang=css& */ "./resources/js/views/Shop.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _Shop_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Shop_vue_vue_type_template_id_530160d6___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Shop_vue_vue_type_template_id_530160d6___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/Shop.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/views/Game.vue?vue&type=script&lang=js&":
 /*!**************************************************************!*\
   !*** ./resources/js/views/Game.vue?vue&type=script&lang=js& ***!
@@ -28698,6 +29946,54 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/views/MyHero.vue?vue&type=script&lang=js&":
+/*!****************************************************************!*\
+  !*** ./resources/js/views/MyHero.vue?vue&type=script&lang=js& ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MyHero_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MyHero.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/MyHero.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MyHero_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/views/Quests.vue?vue&type=script&lang=js&":
+/*!****************************************************************!*\
+  !*** ./resources/js/views/Quests.vue?vue&type=script&lang=js& ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Quests_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Quests.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Quests.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Quests_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/views/Shop.vue?vue&type=script&lang=js&":
+/*!**************************************************************!*\
+  !*** ./resources/js/views/Shop.vue?vue&type=script&lang=js& ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Shop_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Shop.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Shop.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Shop_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/views/Game.vue?vue&type=style&index=0&lang=css&":
 /*!**********************************************************************!*\
   !*** ./resources/js/views/Game.vue?vue&type=style&index=0&lang=css& ***!
@@ -28720,6 +30016,45 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Home.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Home.vue?vue&type=style&index=0&lang=css&");
+
+
+/***/ }),
+
+/***/ "./resources/js/views/MyHero.vue?vue&type=style&index=0&lang=css&":
+/*!************************************************************************!*\
+  !*** ./resources/js/views/MyHero.vue?vue&type=style&index=0&lang=css& ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_MyHero_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MyHero.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/MyHero.vue?vue&type=style&index=0&lang=css&");
+
+
+/***/ }),
+
+/***/ "./resources/js/views/Quests.vue?vue&type=style&index=0&lang=css&":
+/*!************************************************************************!*\
+  !*** ./resources/js/views/Quests.vue?vue&type=style&index=0&lang=css& ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Quests_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Quests.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Quests.vue?vue&type=style&index=0&lang=css&");
+
+
+/***/ }),
+
+/***/ "./resources/js/views/Shop.vue?vue&type=style&index=0&lang=css&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/views/Shop.vue?vue&type=style&index=0&lang=css& ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Shop_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Shop.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Shop.vue?vue&type=style&index=0&lang=css&");
 
 
 /***/ }),
@@ -28754,6 +30089,57 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_template_id_63cd6604___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_template_id_63cd6604___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Home.vue?vue&type=template&id=63cd6604& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Home.vue?vue&type=template&id=63cd6604&");
+
+
+/***/ }),
+
+/***/ "./resources/js/views/MyHero.vue?vue&type=template&id=a5ddfab6&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/views/MyHero.vue?vue&type=template&id=a5ddfab6& ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyHero_vue_vue_type_template_id_a5ddfab6___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyHero_vue_vue_type_template_id_a5ddfab6___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MyHero_vue_vue_type_template_id_a5ddfab6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./MyHero.vue?vue&type=template&id=a5ddfab6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/MyHero.vue?vue&type=template&id=a5ddfab6&");
+
+
+/***/ }),
+
+/***/ "./resources/js/views/Quests.vue?vue&type=template&id=4c3f25a0&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/views/Quests.vue?vue&type=template&id=4c3f25a0& ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Quests_vue_vue_type_template_id_4c3f25a0___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Quests_vue_vue_type_template_id_4c3f25a0___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Quests_vue_vue_type_template_id_4c3f25a0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Quests.vue?vue&type=template&id=4c3f25a0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Quests.vue?vue&type=template&id=4c3f25a0&");
+
+
+/***/ }),
+
+/***/ "./resources/js/views/Shop.vue?vue&type=template&id=530160d6&":
+/*!********************************************************************!*\
+  !*** ./resources/js/views/Shop.vue?vue&type=template&id=530160d6& ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Shop_vue_vue_type_template_id_530160d6___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Shop_vue_vue_type_template_id_530160d6___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Shop_vue_vue_type_template_id_530160d6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Shop.vue?vue&type=template&id=530160d6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Shop.vue?vue&type=template&id=530160d6&");
 
 
 /***/ }),
@@ -28808,9 +30194,9 @@ var render = function () {
               {
                 staticClass: "btn btn-primary game-page__button",
                 attrs: { type: "button" },
-                on: { click: _vm.careerButtonClick },
+                on: { click: _vm.questsButtonClick },
               },
-              [_vm._v("Карьера")]
+              [_vm._v("Квесты")]
             ),
           ]),
         ]),
@@ -28836,7 +30222,7 @@ var render = function () {
                 attrs: { type: "button" },
                 on: { click: _vm.smithyButtonClick },
               },
-              [_vm._v("Кузница")]
+              [_vm._v("Кузница(СКОРО!)")]
             ),
           ]),
         ]),
@@ -28921,7 +30307,7 @@ var staticRenderFns = [
         }),
         _vm._v(" "),
         _c("span", {
-          staticClass: "game-pags__hero-space",
+          staticClass: "game-page__hero-space",
           attrs: { id: "game-page__space" },
         }),
         _vm._v(" "),
@@ -29440,6 +30826,983 @@ var staticRenderFns = [
             name: "password",
             id: "home-page__authorization-form__auth__password",
           },
+        }),
+      ]),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/MyHero.vue?vue&type=template&id=a5ddfab6&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/MyHero.vue?vue&type=template&id=a5ddfab6& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { attrs: { id: "myhero" } }, [
+    _c("div", { staticClass: "container myhero-page" }, [
+      _c("div", { staticClass: "row px-3 pt-3" }, [
+        _c("div", { staticClass: "col d-flex flex-column" }, [
+          _c(
+            "span",
+            {
+              staticClass: "btn btn-primary myhero-page__button align-self-end",
+              attrs: { type: "button" },
+              on: { click: _vm.logoutButtonClick },
+            },
+            [_vm._v("Выход")]
+          ),
+        ]),
+      ]),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
+      _vm._m(2),
+      _vm._v(" "),
+      _vm._m(3),
+      _vm._v(" "),
+      _vm._m(4),
+      _vm._v(" "),
+      _vm._m(5),
+      _vm._v(" "),
+      _c("div", { staticClass: "row pt-3" }, [
+        _c("div", { staticClass: "col d-flex flex-column" }, [
+          _c("div", { staticClass: "align-self-center" }, [
+            _c(
+              "span",
+              {
+                staticClass: "btn btn-primary myhero-page__button",
+                attrs: { type: "button" },
+                on: { click: _vm.myHeroButtonClick },
+              },
+              [_vm._v("Мой герой")]
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                staticClass: "btn btn-primary myhero-page__button",
+                attrs: { type: "button" },
+                on: { click: _vm.homeButtonClick },
+              },
+              [_vm._v("На главную")]
+            ),
+          ]),
+        ]),
+      ]),
+      _vm._v(" "),
+      _vm._m(6),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row pt-4" }, [
+      _c("div", { staticClass: "col d-flex flex-column" }, [
+        _c("div", { staticClass: "align-self-center" }, [
+          _c("span", { staticClass: "myhero-page__hero-name-label" }, [
+            _vm._v("Имя персонажа:"),
+          ]),
+          _vm._v(" "),
+          _c("span", {
+            staticClass: "myhero-page__hero-name",
+            attrs: { id: "hero-name" },
+          }),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row pt-2" }, [
+      _c("div", { staticClass: "col d-flex flex-column" }, [
+        _c("div", { staticClass: "align-self-center" }, [
+          _c("span", { staticClass: "myhero-page__hero-gender-label" }, [
+            _vm._v("Пол:"),
+          ]),
+          _vm._v(" "),
+          _c("span", {
+            staticClass: "myhero-page__hero-gender",
+            attrs: { id: "hero-gender" },
+          }),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row pt-2" }, [
+      _c("div", { staticClass: "col d-flex flex-column" }, [
+        _c("div", { staticClass: "align-self-center" }, [
+          _c("span", { staticClass: "myhero-page__hero-class-label" }, [
+            _vm._v("Класс:"),
+          ]),
+          _vm._v(" "),
+          _c("span", {
+            staticClass: "myhero-page__hero-class",
+            attrs: { id: "hero-class" },
+          }),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row pt-2" }, [
+      _c("div", { staticClass: "col d-flex flex-column" }, [
+        _c("div", { staticClass: "align-self-center" }, [
+          _c("span", { staticClass: "myhero-page__hero-level-label" }, [
+            _vm._v("Уровень:"),
+          ]),
+          _vm._v(" "),
+          _c("span", {
+            staticClass: "myhero-page__hero-level",
+            attrs: { id: "hero-level" },
+          }),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row pt-2" }, [
+      _c("div", { staticClass: "col d-flex flex-column" }, [
+        _c("div", { staticClass: "align-self-center" }, [
+          _c("span", { staticClass: "myhero-page__hero-balance-label" }, [
+            _vm._v("Баланс:"),
+          ]),
+          _vm._v(" "),
+          _c("span", {
+            staticClass: "myhero-page__hero-balance",
+            attrs: { id: "hero-balance" },
+          }),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row px-2 pt-4" }, [
+      _c("div", { staticClass: "col" }, [
+        _c("hr", { staticClass: "myhero-page__underline" }),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row px-2 pt-2" }, [
+      _c("div", { staticClass: "col" }, [
+        _c("hr", { staticClass: "myhero-page__underline" }),
+      ]),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Quests.vue?vue&type=template&id=4c3f25a0&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Quests.vue?vue&type=template&id=4c3f25a0& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { attrs: { id: "quests" } }, [
+    _c("div", { staticClass: "container quests-page" }, [
+      _c("div", { staticClass: "row px-3 pt-3" }, [
+        _c("div", { staticClass: "col d-flex flex-column" }, [
+          _c(
+            "span",
+            {
+              staticClass: "btn btn-primary quests-page__button align-self-end",
+              attrs: { type: "button" },
+              on: { click: _vm.logoutButtonClick },
+            },
+            [_vm._v("Выход")]
+          ),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row pt-5" }, [
+        _c("div", { staticClass: "col d-flex flex-column" }, [
+          _c("div", { staticClass: "align-self-center" }, [
+            _c(
+              "div",
+              { staticClass: "card", staticStyle: { width: "15rem" } },
+              [
+                _c("div", { staticClass: "card-body d-flex flex-column" }, [
+                  _c(
+                    "h5",
+                    {
+                      staticClass: "card-title text-center quests-page__header",
+                    },
+                    [_vm._v("Тестовый квест 1")]
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center quests-page__award" }, [
+                    _vm._v("5 опыта и 50 монет"),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    { staticClass: "text-center quests-page__requirement" },
+                    [_vm._v("ТРЕБОВАНИЯ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      staticClass:
+                        "btn btn-primary align-self-center quests-page__button__item",
+                      attrs: { id: "quest1-button" },
+                      on: { click: _vm.completeQuest1 },
+                    },
+                    [_vm._v("Получить награду")]
+                  ),
+                ]),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "card", staticStyle: { width: "15rem" } },
+              [
+                _c("div", { staticClass: "card-body d-flex flex-column" }, [
+                  _c(
+                    "h5",
+                    {
+                      staticClass: "card-title text-center quests-page__header",
+                    },
+                    [_vm._v("Тестовый квест 2")]
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center quests-page__award" }, [
+                    _vm._v("10 опыта и 100 монет"),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    { staticClass: "text-center quests-page__requirement" },
+                    [_vm._v("ТРЕБОВАНИЯ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      staticClass:
+                        "btn btn-primary align-self-center quests-page__button__item",
+                      attrs: { id: "quest2-button" },
+                      on: { click: _vm.completeQuest2 },
+                    },
+                    [_vm._v("Получить награду")]
+                  ),
+                ]),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "card", staticStyle: { width: "15rem" } },
+              [
+                _c("div", { staticClass: "card-body d-flex flex-column" }, [
+                  _c(
+                    "h5",
+                    {
+                      staticClass: "card-title text-center quests-page__header",
+                    },
+                    [_vm._v("Тестовый квест 3")]
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center quests-page__award" }, [
+                    _vm._v("15 опыта и 150 монет"),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    { staticClass: "text-center quests-page__requirement" },
+                    [_vm._v("ТРЕБОВАНИЯ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      staticClass:
+                        "btn btn-primary align-self-center quests-page__button__item",
+                      attrs: { id: "quest3-button" },
+                      on: { click: _vm.completeQuest3 },
+                    },
+                    [_vm._v("Получить награду")]
+                  ),
+                ]),
+              ]
+            ),
+          ]),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row pt-5" }, [
+        _c("div", { staticClass: "col d-flex flex-column" }, [
+          _c("div", { staticClass: "align-self-center" }, [
+            _c(
+              "div",
+              { staticClass: "card", staticStyle: { width: "15rem" } },
+              [
+                _c("div", { staticClass: "card-body d-flex flex-column" }, [
+                  _c(
+                    "h5",
+                    {
+                      staticClass: "card-title text-center quests-page__header",
+                    },
+                    [_vm._v("Тестовый квест 4")]
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center quests-page__award" }, [
+                    _vm._v("20 опыта и 200 монет"),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    { staticClass: "text-center quests-page__requirement" },
+                    [_vm._v("ТРЕБОВАНИЯ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      staticClass:
+                        "btn btn-primary align-self-center quests-page__button__item",
+                      attrs: { id: "quest4-button" },
+                      on: { click: _vm.completeQuest4 },
+                    },
+                    [_vm._v("Получить награду")]
+                  ),
+                ]),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "card", staticStyle: { width: "15rem" } },
+              [
+                _c("div", { staticClass: "card-body d-flex flex-column" }, [
+                  _c(
+                    "h5",
+                    {
+                      staticClass: "card-title text-center quests-page__header",
+                    },
+                    [_vm._v("Тестовый квест 5")]
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center quests-page__award" }, [
+                    _vm._v("25 опыта и 250 монет"),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    { staticClass: "text-center quests-page__requirement" },
+                    [_vm._v("ТРЕБОВАНИЯ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      staticClass:
+                        "btn btn-primary align-self-center quests-page__button__item",
+                      attrs: { id: "quest5-button" },
+                      on: { click: _vm.completeQuest5 },
+                    },
+                    [_vm._v("Получить награду")]
+                  ),
+                ]),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "card", staticStyle: { width: "15rem" } },
+              [
+                _c("div", { staticClass: "card-body d-flex flex-column" }, [
+                  _c(
+                    "h5",
+                    {
+                      staticClass: "card-title text-center quests-page__header",
+                    },
+                    [_vm._v("Тестовый квест 6")]
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center quests-page__award" }, [
+                    _vm._v("30 опыта и 300 монет"),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    { staticClass: "text-center quests-page__requirement" },
+                    [_vm._v("ТРЕБОВАНИЯ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      staticClass:
+                        "btn btn-primary align-self-center quests-page__button__item",
+                      attrs: { id: "quest6-button" },
+                      on: { click: _vm.completeQuest6 },
+                    },
+                    [_vm._v("Получить награду")]
+                  ),
+                ]),
+              ]
+            ),
+          ]),
+        ]),
+      ]),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "row pt-2" }, [
+        _c("div", { staticClass: "col d-flex flex-column" }, [
+          _c("div", { staticClass: "align-self-center" }, [
+            _c(
+              "span",
+              {
+                staticClass: "btn btn-primary quests-page__button",
+                attrs: { type: "button" },
+                on: { click: _vm.myHeroButtonClick },
+              },
+              [_vm._v("Мой герой")]
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                staticClass: "btn btn-primary quests-page__button",
+                attrs: { type: "button" },
+                on: { click: _vm.homeButtonClick },
+              },
+              [_vm._v("На главную")]
+            ),
+          ]),
+        ]),
+      ]),
+      _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
+      _vm._m(2),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row px-2 pt-4" }, [
+      _c("div", { staticClass: "col" }, [
+        _c("hr", { staticClass: "quests-page__underline" }),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row px-2 pt-2" }, [
+      _c("div", { staticClass: "col" }, [
+        _c("hr", { staticClass: "quests-page__underline" }),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row px-3 pb-4" }, [
+      _c("div", { staticClass: "col" }, [
+        _c("span", {
+          staticClass: "quests-page__hero-gender",
+          attrs: { id: "quests-page__gender" },
+        }),
+        _vm._v(" "),
+        _c("span", {
+          staticClass: "quests-page__hero-name",
+          attrs: { id: "quests-page__login" },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col" }, [
+        _c("span", {
+          staticClass: "quests-page__hero-level",
+          attrs: { id: "quests-page__level" },
+        }),
+        _vm._v(" "),
+        _c("span", {
+          staticClass: "quests-page__hero-space",
+          attrs: { id: "quests-page__space" },
+        }),
+        _vm._v(" "),
+        _c("span", {
+          staticClass: "quests-page__hero-balance",
+          attrs: { id: "quests-page__balance" },
+        }),
+      ]),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Shop.vue?vue&type=template&id=530160d6&":
+/*!***********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Shop.vue?vue&type=template&id=530160d6& ***!
+  \***********************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { attrs: { id: "quests" } }, [
+    _c("div", { staticClass: "container shop-page" }, [
+      _c("div", { staticClass: "row px-3 pt-3" }, [
+        _c("div", { staticClass: "col d-flex flex-column" }, [
+          _c(
+            "span",
+            {
+              staticClass: "btn btn-primary shop-page__button align-self-end",
+              attrs: { type: "button" },
+              on: { click: _vm.logoutButtonClick },
+            },
+            [_vm._v("Выход")]
+          ),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row pt-5" }, [
+        _c("div", { staticClass: "col d-flex flex-column" }, [
+          _c("div", { staticClass: "align-self-center" }, [
+            _c(
+              "div",
+              { staticClass: "card", staticStyle: { width: "13rem" } },
+              [
+                _c("img", {
+                  staticClass: "card-img-top",
+                  staticStyle: { width: "206px", height: "140px" },
+                  attrs: {
+                    src: "/../../../view/image/sword.jpg",
+                    alt: "Card image cap",
+                  },
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body d-flex flex-column" }, [
+                  _c(
+                    "h5",
+                    { staticClass: "card-title text-center shop-page__header" },
+                    [_vm._v("Меч 1")]
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center shop-page__price" }, [
+                    _vm._v("Цена: 100 монет"),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center shop-page__attribute" }, [
+                    _vm._v("Атака +10"),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center shop-page__class" }, [
+                    _vm._v("Класс: воин"),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      staticClass:
+                        "btn btn-primary align-self-center shop-page__button__item",
+                      attrs: { id: "weapon-warrior-1" },
+                      on: { click: _vm.weaponWarrior1 },
+                    },
+                    [_vm._v("Купить")]
+                  ),
+                ]),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "card", staticStyle: { width: "13rem" } },
+              [
+                _c("img", {
+                  staticClass: "card-img-top",
+                  staticStyle: { width: "206px", height: "140px" },
+                  attrs: {
+                    src: "/../../../view/image/staff.jpg",
+                    alt: "Card image cap",
+                  },
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body d-flex flex-column" }, [
+                  _c(
+                    "h5",
+                    { staticClass: "card-title text-center shop-page__header" },
+                    [_vm._v("Посох 1")]
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center shop-page__price" }, [
+                    _vm._v("Цена: 100 монет"),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center shop-page__attribute" }, [
+                    _vm._v("Атака +10"),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center shop-page__class" }, [
+                    _vm._v("Класс: маг"),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      staticClass:
+                        "btn btn-primary align-self-center shop-page__button__item",
+                      attrs: { id: "weapon-wizard-1" },
+                      on: { click: _vm.weaponWizard1 },
+                    },
+                    [_vm._v("Купить")]
+                  ),
+                ]),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "card", staticStyle: { width: "13rem" } },
+              [
+                _c("img", {
+                  staticClass: "card-img-top",
+                  staticStyle: { width: "206px", height: "140px" },
+                  attrs: {
+                    src: "/../../../view/image/bow.jpg",
+                    alt: "Card image cap",
+                  },
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body d-flex flex-column" }, [
+                  _c(
+                    "h5",
+                    { staticClass: "card-title text-center shop-page__header" },
+                    [_vm._v("Лук 1")]
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center shop-page__price" }, [
+                    _vm._v("Цена: 100 монет"),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center shop-page__attribute" }, [
+                    _vm._v("Атака +10"),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center shop-page__class" }, [
+                    _vm._v("Класс: охотник"),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      staticClass:
+                        "btn btn-primary align-self-center shop-page__button__item",
+                      attrs: { id: "weapon-hunter-1" },
+                      on: { click: _vm.weaponHunter1 },
+                    },
+                    [_vm._v("Купить")]
+                  ),
+                ]),
+              ]
+            ),
+          ]),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row pt-5" }, [
+        _c("div", { staticClass: "col d-flex flex-column" }, [
+          _c("div", { staticClass: "align-self-center" }, [
+            _c(
+              "div",
+              { staticClass: "card", staticStyle: { width: "13rem" } },
+              [
+                _c("img", {
+                  staticClass: "card-img-top",
+                  staticStyle: { width: "206px", height: "140px" },
+                  attrs: {
+                    src: "/../../../view/image/sword.jpg",
+                    alt: "Card image cap",
+                  },
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body d-flex flex-column" }, [
+                  _c(
+                    "h5",
+                    { staticClass: "card-title text-center shop-page__header" },
+                    [_vm._v("Меч 2")]
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center shop-page__price" }, [
+                    _vm._v("Цена: 200 монет"),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center shop-page__attribute" }, [
+                    _vm._v("Атака +20"),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center shop-page__class" }, [
+                    _vm._v("Класс: воин"),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      staticClass:
+                        "btn btn-primary align-self-center shop-page__button__item",
+                      attrs: { id: "weapon-warrior-2" },
+                      on: { click: _vm.weaponWarrior2 },
+                    },
+                    [_vm._v("Купить")]
+                  ),
+                ]),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "card", staticStyle: { width: "13rem" } },
+              [
+                _c("img", {
+                  staticClass: "card-img-top",
+                  staticStyle: { width: "206px", height: "140px" },
+                  attrs: {
+                    src: "/../../../view/image/staff.jpg",
+                    alt: "Card image cap",
+                  },
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body d-flex flex-column" }, [
+                  _c(
+                    "h5",
+                    { staticClass: "card-title text-center shop-page__header" },
+                    [_vm._v("Посох 2")]
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center shop-page__price" }, [
+                    _vm._v("Цена: 200 монет"),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center shop-page__attribute" }, [
+                    _vm._v("Атака +20"),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center shop-page__class" }, [
+                    _vm._v("Класс: маг"),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      staticClass:
+                        "btn btn-primary align-self-center shop-page__button__item",
+                      attrs: { id: "weapon-wizard-2" },
+                      on: { click: _vm.weaponWizard2 },
+                    },
+                    [_vm._v("Купить")]
+                  ),
+                ]),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "card", staticStyle: { width: "13rem" } },
+              [
+                _c("img", {
+                  staticClass: "card-img-top",
+                  staticStyle: { width: "206px", height: "140px" },
+                  attrs: {
+                    src: "/../../../view/image/bow.jpg",
+                    alt: "Card image cap",
+                  },
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body d-flex flex-column" }, [
+                  _c(
+                    "h5",
+                    { staticClass: "card-title text-center shop-page__header" },
+                    [_vm._v("Лук 2")]
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center shop-page__price" }, [
+                    _vm._v("Цена: 200 монет"),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center shop-page__attribute" }, [
+                    _vm._v("Атака +20"),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center shop-page__class" }, [
+                    _vm._v("Класс: охотник"),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      staticClass:
+                        "btn btn-primary align-self-center shop-page__button__item",
+                      attrs: { id: "weapon-hunter-2" },
+                      on: { click: _vm.weaponHunter2 },
+                    },
+                    [_vm._v("Купить")]
+                  ),
+                ]),
+              ]
+            ),
+          ]),
+        ]),
+      ]),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "row pt-2" }, [
+        _c("div", { staticClass: "col d-flex flex-column" }, [
+          _c("div", { staticClass: "align-self-center" }, [
+            _c(
+              "span",
+              {
+                staticClass: "btn btn-primary shop-page__button",
+                attrs: { type: "button" },
+                on: { click: _vm.myHeroButtonClick },
+              },
+              [_vm._v("Мой герой")]
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                staticClass: "btn btn-primary shop-page__button",
+                attrs: { type: "button" },
+                on: { click: _vm.homeButtonClick },
+              },
+              [_vm._v("На главную")]
+            ),
+          ]),
+        ]),
+      ]),
+      _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
+      _vm._m(2),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row px-2 pt-4" }, [
+      _c("div", { staticClass: "col" }, [
+        _c("hr", { staticClass: "quests-page__underline" }),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row px-2 pt-2" }, [
+      _c("div", { staticClass: "col" }, [
+        _c("hr", { staticClass: "shop-page__underline" }),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row px-3 pb-4" }, [
+      _c("div", { staticClass: "col" }, [
+        _c("span", {
+          staticClass: "shop-page__hero-gender",
+          attrs: { id: "shop-page__gender" },
+        }),
+        _vm._v(" "),
+        _c("span", {
+          staticClass: "shop-page__hero-name",
+          attrs: { id: "shop-page__login" },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col" }, [
+        _c("span", {
+          staticClass: "shop-page__hero-level",
+          attrs: { id: "shop-page__level" },
+        }),
+        _vm._v(" "),
+        _c("span", {
+          staticClass: "shop-page__hero-space",
+          attrs: { id: "shop-page__space" },
+        }),
+        _vm._v(" "),
+        _c("span", {
+          staticClass: "shop-page__hero-balance",
+          attrs: { id: "shop-page__balance" },
         }),
       ]),
     ])

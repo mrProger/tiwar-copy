@@ -1,58 +1,71 @@
 <template>
-    <div id="game">
-        <div class="contrainer game-page">
+    <div id="myhero">
+        <div class="container myhero-page">
             <div class="row px-3 pt-3">
                 <div class="col d-flex flex-column">
-                    <span @click="logoutButtonClick" class="btn btn-primary game-page__button align-self-end" type="button">Выход</span>
-                </div>
-            </div>
-            <div class="row pt-5">
-                <div class="col d-flex flex-column">
-                    <div class="align-self-center">
-                        <span @click="arenaButtonClick" class="btn btn-primary game-page__button" type="button">Арена</span>
-                        <span @click="questsButtonClick" class="btn btn-primary game-page__button" type="button">Квесты</span>
-                    </div>
+                    <span @click="logoutButtonClick" class="btn btn-primary myhero-page__button align-self-end" type="button">Выход</span>
                 </div>
             </div>
             <div class="row pt-4">
                 <div class="col d-flex flex-column">
                     <div class="align-self-center">
-                        <span @click="shopButtonClick" class="btn btn-primary game-page__button" type="button">Торговец</span>
-                        <span @click="smithyButtonClick" class="btn btn-primary game-page__button" type="button">Кузница(СКОРО!)</span>
+                        <span class="myhero-page__hero-name-label">Имя персонажа:</span>
+                        <span id="hero-name" class="myhero-page__hero-name"></span>
                     </div>
-                </div>
-            </div>
-            <div class="row px-2 pt-4">
-                <div class="col">
-                    <hr class="game-page__underline">
                 </div>
             </div>
             <div class="row pt-2">
                 <div class="col d-flex flex-column">
                     <div class="align-self-center">
-                        <span @click="myHeroButtonClick" class="btn btn-primary game-page__button" type="button">Мой герой</span>
-                        <span @click="homeButtonClick" class="btn btn-primary game-page__button" type="button">На главную</span>
+                        <span class="myhero-page__hero-gender-label">Пол:</span>
+                        <span id="hero-gender" class="myhero-page__hero-gender"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row pt-2">
+                <div class="col d-flex flex-column">
+                    <div class="align-self-center">
+                        <span class="myhero-page__hero-class-label">Класс:</span>
+                        <span id="hero-class" class="myhero-page__hero-class"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row pt-2">
+                <div class="col d-flex flex-column">
+                    <div class="align-self-center">
+                        <span class="myhero-page__hero-level-label">Уровень:</span>
+                        <span id="hero-level" class="myhero-page__hero-level"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row pt-2">
+                <div class="col d-flex flex-column">
+                    <div class="align-self-center">
+                        <span class="myhero-page__hero-balance-label">Баланс:</span>
+                        <span id="hero-balance" class="myhero-page__hero-balance"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row px-2 pt-4">
+                <div class="col">
+                    <hr class="myhero-page__underline">
+                </div>
+            </div>
+            <div class="row pt-3">
+                <div class="col d-flex flex-column">
+                    <div class="align-self-center">
+                        <span @click="myHeroButtonClick" class="btn btn-primary myhero-page__button" type="button">Мой герой</span>
+                        <span @click="homeButtonClick" class="btn btn-primary myhero-page__button" type="button">На главную</span>
                     </div>
                 </div>
             </div>
             <div class="row px-2 pt-2">
                 <div class="col">
-                    <hr class="game-page__underline">
-                </div>
-            </div>
-            <div class="row px-3">
-                <div class="col">
-                    <span id='game-page__gender' class='game-page__hero-gender'></span>
-                    <span id='game-page__login' class='game-page__hero-name'></span>
-                </div>
-                <div class="col">
-                    <span id='game-page__level' class='game-page__hero-level'></span>
-                    <span id='game-page__space' class='game-page__hero-space'></span>
-                    <span id='game-page__balance' class='game-page__hero-balance'></span>
+                    <hr class="myhero-page__underline">
                 </div>
             </div>
         </div>
-    </div>
+    </div>    
 </template>
 
 <script>
@@ -62,11 +75,11 @@ export default {
             document.location = '/';
     },
     mounted() {
-        document.getElementById('game-page__gender').innerText = JSON.parse(localStorage.getItem('player'))['gender'];
-        document.getElementById('game-page__login').innerText = JSON.parse(localStorage.getItem('player'))['login'];
-        document.getElementById('game-page__level').innerText = JSON.parse(localStorage.getItem('player'))['level'];
-        document.getElementById('game-page__space').innerText = '|';
-        document.getElementById('game-page__balance').innerText = JSON.parse(localStorage.getItem('player'))['balance'];
+        document.getElementById('hero-name').innerText = JSON.parse(localStorage.getItem('player'))['login'];
+        document.getElementById('hero-gender').innerText = JSON.parse(localStorage.getItem('player'))['gender'];
+        document.getElementById('hero-class').innerText = JSON.parse(localStorage.getItem('player'))['class'];
+        document.getElementById('hero-level').innerText = JSON.parse(localStorage.getItem('player'))['level'];
+        document.getElementById('hero-balance').innerText = JSON.parse(localStorage.getItem('player'))['balance'];
     },
     methods: {
         logoutButtonClick: function() {
@@ -103,14 +116,6 @@ export default {
                 });
             });
         },
-        arenaButtonClick: function() {
-            alert('Арена');
-        },
-        questsButtonClick: () => document.location = 'quests',
-        shopButtonClick: () => document.location = 'shop',
-        smithyButtonClick: function() {
-            alert('Кузница');
-        },
         myHeroButtonClick: () => document.location = 'myhero',
         homeButtonClick: () => document.location = 'game'
     }
@@ -118,12 +123,12 @@ export default {
 </script>
 
 <style>
-    .game-page__underline {
+    .myhero-page__underline {
         border: 3px solid #C8C8C8;
         border-radius: 10px;
     }
 
-    .game-page__button {
+    .myhero-page__button {
         font-size: 20px !important;
         font-weight: bold !important;
         color: #FFFFFF;
@@ -134,34 +139,64 @@ export default {
         border-radius: 15px !important;
     }
 
-    .game-page__button:hover {
+    .myhero-page__button:hover {
         color: #3E50B8 !important;
         background-color: #2B2C32 !important;
         border-color: #2B2C32 !important;
     }
 
-    .game-page__hero-gender {
+    .myhero-page__hero-gender {
         font-size: 26px;
         color: #FFFFFF;
     }
 
-    .game-page__hero-name {
+    .myhero-page__hero-name {
         font-size: 26px;
         color: #FFFFFF;
     }
 
-    .game-page__hero-level {
+    .myhero-page__hero-level {
         font-size: 26px;
         color: #FFFFFF;
     }
 
-    .game-page__hero-balance {
+    .myhero-page__hero-balance {
         font-size: 26px;
         color: #FFFFFF;
     }
 
-    .game-page__hero-space {
+    .myhero-page__hero-class {
         font-size: 26px;
+        color: #FFFFFF;
+    }
+
+    .myhero-page__hero-gender-label {
+        font-size: 26px;
+        font-weight: bold;
+        color: #FFFFFF;
+    }
+
+    .myhero-page__hero-name-label {
+        font-size: 26px;
+        font-weight: bold;
+        color: #FFFFFF;
+    }
+
+    .myhero-page__hero-level-label {
+        font-size: 26px;
+        font-weight: bold;
+        color: #FFFFFF;
+    }
+
+    .myhero-page__hero-balance-label {
+        font-size: 26px;
+        font-weight: bold;
+        color: #FFFFFF;
+    }
+
+    .myhero-page__hero-class-label {
+        font-size: 26px;
+        font-weight: bold;
         color: #FFFFFF;
     }
 </style>

@@ -184,8 +184,8 @@
             })
           }).then((response) => {
             return response.text().then(function(text) {
-              if (text == 'true') {
-                fetch('/api/getplayerdata', {
+              if (text == 'true' || text == 1 || text == true || text == '1') {
+                fetch('/api/getallplayerdata', {
                   method: 'POST',
                   headers: { 
                     'Content-Type': 'application/json;charset=utf-8', 
@@ -231,7 +231,7 @@
           }).then((response) => {
             return response.text().then(function(text) {
               if (text == 'true') {
-                fetch('/api/getplayerdata', {
+                fetch('/api/getallplayerdata', {
                   method: 'POST',
                   headers: { 
                     'Content-Type': 'application/json;charset=utf-8', 
