@@ -12,48 +12,16 @@ class WriteDataController extends Controller
     public function writeAllPlayerData(Request $request) {
         $data = objectToarray(json_decode(file_get_contents('php://input')));
 
+        $keys = array('level', 'exp', 'balance', 'attack', 'weapon', 'quest1', 'quest2', 'quest3', 'quest4', 'quest5', 'quest6', 'weapon1_buying', 'weapon2_buying');
+        
         $accounts = DB::table('accounts')->where('login', $data['login']);
 
         $user = array();
-
-        if ($data['level'] != $accounts->value('level'))
-            $user['level'] = $data['level'];
         
-        if ($data['exp'] != $accounts->value('exp'))
-            $user['exp'] = $data['exp'];
-
-        if ($data['balance'] != $accounts->value('balance'))
-            $user['balance'] = $data['balance'];
-
-        if ($data['attack'] != $accounts->value('attack'))
-            $user['attack'] = $data['attack'];
-
-        if ($data['weapon'] != $accounts->value('weapon'))
-            $user['weapon'] = $data['weapon'];
-
-        if ($data['quest1'] != $accounts->value('quest1'))
-            $user['quest1'] = $data['quest1'];
-
-        if ($data['quest2'] != $accounts->value('quest2'))
-            $user['quest2'] = $data['quest2'];
-
-        if ($data['quest3'] != $accounts->value('quest3'))
-            $user['quest3'] = $data['quest3'];
-
-        if ($data['quest4'] != $accounts->value('quest4'))
-            $user['quest4'] = $data['quest4'];
-
-        if ($data['quest5'] != $accounts->value('quest5'))
-            $user['quest5'] = $data['quest5'];
-
-        if ($data['quest6'] != $accounts->value('quest6'))
-            $user['quest6'] = $data['quest6'];
-
-        if ($data['weapon1_buying'] != $accounts->value('weapon1_buying'))
-            $user['weapon1_buying'] = $data['weapon1_buying'];
-
-        if ($data['weapon2_buying'] != $accounts->value('weapon2_buying'))
-            $user['weapon2_buying'] = $data['weapon2_buying'];
+        for ($i = 0; $i < count($keys); $i++) {
+            if ($data[$keys[$i]]) != $accounts->value($keys[$i])
+                $user[$keys[$i]] = $data[$keys[$i]];
+        }
 
         if (count($user) > 0) {
             $writeDataStatus = DB::table('accounts')->where('login', $data['login'])->update($user);
