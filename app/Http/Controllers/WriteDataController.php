@@ -18,10 +18,9 @@ class WriteDataController extends Controller
 
         $user = array();
         
-        for ($i = 0; $i < count($keys); $i++) {
+        for ($i = 0; $i < count($keys); $i++)
             if ($data[$keys[$i]] != $accounts->value($keys[$i]))
                 $user[$keys[$i]] = $data[$keys[$i]];
-        }
 
         if (count($user) > 0) {
             $writeDataStatus = DB::table('accounts')->where('login', $data['login'])->update($user);
