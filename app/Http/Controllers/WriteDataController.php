@@ -19,7 +19,7 @@ class WriteDataController extends Controller
         $user = array();
         
         for ($i = 0; $i < count($keys); $i++) {
-            if ($data[$keys[$i]]) != $accounts->value($keys[$i])
+            if ($data[$keys[$i]] != $accounts->value($keys[$i]))
                 $user[$keys[$i]] = $data[$keys[$i]];
         }
 
