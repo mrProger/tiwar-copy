@@ -86,13 +86,11 @@
             </div>
             <div class="row px-3 pb-4">
                 <div class="col">
-                    <span id='quests-page__gender' class='quests-page__hero-gender'></span>
-                    <span id='quests-page__login' class='quests-page__hero-name'></span>
+                    <i id='quests-page__gender'></i><span id='quests-page__login' class='quests-page__hero-name'></span>
                 </div>
                 <div class="col">
-                    <span id='quests-page__level' class='quests-page__hero-level'></span>
-                    <span id='quests-page__space' class='quests-page__hero-space'></span>
-                    <span id='quests-page__balance' class='quests-page__hero-balance'></span>
+                    <i class="fas fa-arrow-up"></i><span id='quests-page__level' class='quests-page__hero-level'></span>
+                    <i class='fas fa-coins'></i><span id='quests-page__balance' class='quests-page__hero-balance'></span>
                 </div>
             </div>
       </div>
@@ -136,10 +134,13 @@ export default {
         else
             document.getElementById('quest6-button').innerText = 'Получить награду';
 
-        document.getElementById('quests-page__gender').innerText = JSON.parse(localStorage.getItem('player'))['gender'];
+        if (JSON.parse(localStorage.getItem('player'))['gender'] == 'male')
+            document.getElementById('quests-page__gender').classList.add('fas', 'fa-male');
+        else
+            document.getElementById('quests-page__gender').classList.add('fas', 'fa-female');
+
         document.getElementById('quests-page__login').innerText = JSON.parse(localStorage.getItem('player'))['login'];
         document.getElementById('quests-page__level').innerText = JSON.parse(localStorage.getItem('player'))['level'];
-        document.getElementById('quests-page__space').innerText = '|';
         document.getElementById('quests-page__balance').innerText = JSON.parse(localStorage.getItem('player'))['balance'];
     },
     methods: {
@@ -182,14 +183,44 @@ export default {
                 object_['balance'] += 50;
                 document.getElementById('quest1-button').innerText = 'Награда получена';
                 
-                if (object_['exp'] >= 5 && object_['exp'] < 10)
+                if (object_['exp'] >= 25 && object_['exp'] < 50)
                     object_['level'] = 2;
-                else if (object_['exp'] >= 10 && object_['exp'] < 15)
+                else if (object_['exp'] >= 50 && object_['exp'] < 75)
                     object_['level'] = 3;
-                else if (object_['exp'] >= 15 && object_['exp'] < 20)
+                else if (object_['exp'] >= 75 && object_['exp'] < 100)
                     object_['level'] = 4;
-                else if (object_['exp'] >= 20 && object_['exp'] < 25)
+                else if (object_['exp'] >= 100 && object_['exp'] < 125)
                     object_['level'] = 5;
+                else if (object_['exp'] >= 125 && object_['exp'] < 150)
+                    object_['level'] = 6;
+                else if (object_['exp'] >= 150 && object_['exp'] < 175)
+                    object_['level'] = 7;
+                else if (object_['exp'] >= 175 && object_['exp'] < 200)
+                    object_['level'] = 8;
+                else if (object_['exp'] >= 200 && object_['exp'] < 225)
+                    object_['level'] = 9;
+                else if (object_['exp'] >= 225 && object_['exp'] < 250)
+                    object_['level'] = 10;
+                else if (object_['exp'] >= 250 && object_['exp'] < 275)
+                    object_['level'] = 11;
+                else if (object_['exp'] >= 275 && object_['exp'] < 300)
+                    object_['level'] = 12;
+                else if (object_['exp'] >= 300 && object_['exp'] < 325)
+                    object_['level'] = 13;
+                else if (object_['exp'] >= 325 && object_['exp'] < 375)
+                    object_['level'] = 14;
+                else if (object_['exp'] >= 375 && object_['exp'] < 425)
+                    object_['level'] = 15;
+                else if (object_['exp'] >= 425 && object_['exp'] < 475)
+                    object_['level'] = 16;
+                else if (object_['exp'] >= 475 && object_['exp'] < 525)
+                    object_['level'] = 17;
+                else if (object_['exp'] >= 525 && object_['exp'] < 575)
+                    object_['level'] = 18;
+                else if (object_['exp'] >= 575 && object_['exp'] < 625)
+                    object_['level'] = 19;
+                else
+                    object_['level'] = 20;
 
                 localStorage.setItem('player', JSON.stringify(object_));
 
@@ -229,14 +260,44 @@ export default {
                 object_['balance'] += 50;
                 document.getElementById('quest2-button').innerText = 'Награда получена';
                 
-                if (object_['exp'] >= 5 && object_['exp'] < 10)
+                if (object_['exp'] >= 25 && object_['exp'] < 50)
                     object_['level'] = 2;
-                else if (object_['exp'] >= 10 && object_['exp'] < 15)
+                else if (object_['exp'] >= 50 && object_['exp'] < 75)
                     object_['level'] = 3;
-                else if (object_['exp'] >= 15 && object_['exp'] < 20)
+                else if (object_['exp'] >= 75 && object_['exp'] < 100)
                     object_['level'] = 4;
-                else if (object_['exp'] >= 20 && object_['exp'] < 25)
+                else if (object_['exp'] >= 100 && object_['exp'] < 125)
                     object_['level'] = 5;
+                else if (object_['exp'] >= 125 && object_['exp'] < 150)
+                    object_['level'] = 6;
+                else if (object_['exp'] >= 150 && object_['exp'] < 175)
+                    object_['level'] = 7;
+                else if (object_['exp'] >= 175 && object_['exp'] < 200)
+                    object_['level'] = 8;
+                else if (object_['exp'] >= 200 && object_['exp'] < 225)
+                    object_['level'] = 9;
+                else if (object_['exp'] >= 225 && object_['exp'] < 250)
+                    object_['level'] = 10;
+                else if (object_['exp'] >= 250 && object_['exp'] < 275)
+                    object_['level'] = 11;
+                else if (object_['exp'] >= 275 && object_['exp'] < 300)
+                    object_['level'] = 12;
+                else if (object_['exp'] >= 300 && object_['exp'] < 325)
+                    object_['level'] = 13;
+                else if (object_['exp'] >= 325 && object_['exp'] < 375)
+                    object_['level'] = 14;
+                else if (object_['exp'] >= 375 && object_['exp'] < 425)
+                    object_['level'] = 15;
+                else if (object_['exp'] >= 425 && object_['exp'] < 475)
+                    object_['level'] = 16;
+                else if (object_['exp'] >= 475 && object_['exp'] < 525)
+                    object_['level'] = 17;
+                else if (object_['exp'] >= 525 && object_['exp'] < 575)
+                    object_['level'] = 18;
+                else if (object_['exp'] >= 575 && object_['exp'] < 625)
+                    object_['level'] = 19;
+                else
+                    object_['level'] = 20;
 
                 localStorage.setItem('player', JSON.stringify(object_));
 
@@ -276,14 +337,44 @@ export default {
                 object_['balance'] += 50;
                 document.getElementById('quest3-button').innerText = 'Награда получена';
                 
-                if (object_['exp'] >= 5 && object_['exp'] < 10)
+                if (object_['exp'] >= 25 && object_['exp'] < 50)
                     object_['level'] = 2;
-                else if (object_['exp'] >= 10 && object_['exp'] < 15)
+                else if (object_['exp'] >= 50 && object_['exp'] < 75)
                     object_['level'] = 3;
-                else if (object_['exp'] >= 15 && object_['exp'] < 20)
+                else if (object_['exp'] >= 75 && object_['exp'] < 100)
                     object_['level'] = 4;
-                else if (object_['exp'] >= 20 && object_['exp'] < 25)
+                else if (object_['exp'] >= 100 && object_['exp'] < 125)
                     object_['level'] = 5;
+                else if (object_['exp'] >= 125 && object_['exp'] < 150)
+                    object_['level'] = 6;
+                else if (object_['exp'] >= 150 && object_['exp'] < 175)
+                    object_['level'] = 7;
+                else if (object_['exp'] >= 175 && object_['exp'] < 200)
+                    object_['level'] = 8;
+                else if (object_['exp'] >= 200 && object_['exp'] < 225)
+                    object_['level'] = 9;
+                else if (object_['exp'] >= 225 && object_['exp'] < 250)
+                    object_['level'] = 10;
+                else if (object_['exp'] >= 250 && object_['exp'] < 275)
+                    object_['level'] = 11;
+                else if (object_['exp'] >= 275 && object_['exp'] < 300)
+                    object_['level'] = 12;
+                else if (object_['exp'] >= 300 && object_['exp'] < 325)
+                    object_['level'] = 13;
+                else if (object_['exp'] >= 325 && object_['exp'] < 375)
+                    object_['level'] = 14;
+                else if (object_['exp'] >= 375 && object_['exp'] < 425)
+                    object_['level'] = 15;
+                else if (object_['exp'] >= 425 && object_['exp'] < 475)
+                    object_['level'] = 16;
+                else if (object_['exp'] >= 475 && object_['exp'] < 525)
+                    object_['level'] = 17;
+                else if (object_['exp'] >= 525 && object_['exp'] < 575)
+                    object_['level'] = 18;
+                else if (object_['exp'] >= 575 && object_['exp'] < 625)
+                    object_['level'] = 19;
+                else
+                    object_['level'] = 20;
 
                 localStorage.setItem('player', JSON.stringify(object_));
 
@@ -323,14 +414,44 @@ export default {
                 object_['balance'] += 50;
                 document.getElementById('quest4-button').innerText = 'Награда получена';
                 
-                if (object_['exp'] >= 5 && object_['exp'] < 10)
+                if (object_['exp'] >= 25 && object_['exp'] < 50)
                     object_['level'] = 2;
-                else if (object_['exp'] >= 10 && object_['exp'] < 15)
+                else if (object_['exp'] >= 50 && object_['exp'] < 75)
                     object_['level'] = 3;
-                else if (object_['exp'] >= 15 && object_['exp'] < 20)
+                else if (object_['exp'] >= 75 && object_['exp'] < 100)
                     object_['level'] = 4;
-                else if (object_['exp'] >= 20 && object_['exp'] < 25)
+                else if (object_['exp'] >= 100 && object_['exp'] < 125)
                     object_['level'] = 5;
+                else if (object_['exp'] >= 125 && object_['exp'] < 150)
+                    object_['level'] = 6;
+                else if (object_['exp'] >= 150 && object_['exp'] < 175)
+                    object_['level'] = 7;
+                else if (object_['exp'] >= 175 && object_['exp'] < 200)
+                    object_['level'] = 8;
+                else if (object_['exp'] >= 200 && object_['exp'] < 225)
+                    object_['level'] = 9;
+                else if (object_['exp'] >= 225 && object_['exp'] < 250)
+                    object_['level'] = 10;
+                else if (object_['exp'] >= 250 && object_['exp'] < 275)
+                    object_['level'] = 11;
+                else if (object_['exp'] >= 275 && object_['exp'] < 300)
+                    object_['level'] = 12;
+                else if (object_['exp'] >= 300 && object_['exp'] < 325)
+                    object_['level'] = 13;
+                else if (object_['exp'] >= 325 && object_['exp'] < 375)
+                    object_['level'] = 14;
+                else if (object_['exp'] >= 375 && object_['exp'] < 425)
+                    object_['level'] = 15;
+                else if (object_['exp'] >= 425 && object_['exp'] < 475)
+                    object_['level'] = 16;
+                else if (object_['exp'] >= 475 && object_['exp'] < 525)
+                    object_['level'] = 17;
+                else if (object_['exp'] >= 525 && object_['exp'] < 575)
+                    object_['level'] = 18;
+                else if (object_['exp'] >= 575 && object_['exp'] < 625)
+                    object_['level'] = 19;
+                else
+                    object_['level'] = 20;
 
                 localStorage.setItem('player', JSON.stringify(object_));
 
@@ -370,14 +491,44 @@ export default {
                 object_['balance'] += 50;
                 document.getElementById('quest5-button').innerText = 'Награда получена';
                 
-                if (object_['exp'] >= 5 && object_['exp'] < 10)
+                if (object_['exp'] >= 25 && object_['exp'] < 50)
                     object_['level'] = 2;
-                else if (object_['exp'] >= 10 && object_['exp'] < 15)
+                else if (object_['exp'] >= 50 && object_['exp'] < 75)
                     object_['level'] = 3;
-                else if (object_['exp'] >= 15 && object_['exp'] < 20)
+                else if (object_['exp'] >= 75 && object_['exp'] < 100)
                     object_['level'] = 4;
-                else if (object_['exp'] >= 20 && object_['exp'] < 25)
+                else if (object_['exp'] >= 100 && object_['exp'] < 125)
                     object_['level'] = 5;
+                else if (object_['exp'] >= 125 && object_['exp'] < 150)
+                    object_['level'] = 6;
+                else if (object_['exp'] >= 150 && object_['exp'] < 175)
+                    object_['level'] = 7;
+                else if (object_['exp'] >= 175 && object_['exp'] < 200)
+                    object_['level'] = 8;
+                else if (object_['exp'] >= 200 && object_['exp'] < 225)
+                    object_['level'] = 9;
+                else if (object_['exp'] >= 225 && object_['exp'] < 250)
+                    object_['level'] = 10;
+                else if (object_['exp'] >= 250 && object_['exp'] < 275)
+                    object_['level'] = 11;
+                else if (object_['exp'] >= 275 && object_['exp'] < 300)
+                    object_['level'] = 12;
+                else if (object_['exp'] >= 300 && object_['exp'] < 325)
+                    object_['level'] = 13;
+                else if (object_['exp'] >= 325 && object_['exp'] < 375)
+                    object_['level'] = 14;
+                else if (object_['exp'] >= 375 && object_['exp'] < 425)
+                    object_['level'] = 15;
+                else if (object_['exp'] >= 425 && object_['exp'] < 475)
+                    object_['level'] = 16;
+                else if (object_['exp'] >= 475 && object_['exp'] < 525)
+                    object_['level'] = 17;
+                else if (object_['exp'] >= 525 && object_['exp'] < 575)
+                    object_['level'] = 18;
+                else if (object_['exp'] >= 575 && object_['exp'] < 625)
+                    object_['level'] = 19;
+                else
+                    object_['level'] = 20;
 
                 localStorage.setItem('player', JSON.stringify(object_));
 
@@ -419,14 +570,44 @@ export default {
                 object_['balance'] += 50;
                 document.getElementById('quest6-button').innerText = 'Награда получена';
                 
-                if (object_['exp'] >= 5 && object_['exp'] < 10)
+                if (object_['exp'] >= 25 && object_['exp'] < 50)
                     object_['level'] = 2;
-                else if (object_['exp'] >= 10 && object_['exp'] < 15)
+                else if (object_['exp'] >= 50 && object_['exp'] < 75)
                     object_['level'] = 3;
-                else if (object_['exp'] >= 15 && object_['exp'] < 20)
+                else if (object_['exp'] >= 75 && object_['exp'] < 100)
                     object_['level'] = 4;
-                else if (object_['exp'] >= 20 && object_['exp'] < 25)
+                else if (object_['exp'] >= 100 && object_['exp'] < 125)
                     object_['level'] = 5;
+                else if (object_['exp'] >= 125 && object_['exp'] < 150)
+                    object_['level'] = 6;
+                else if (object_['exp'] >= 150 && object_['exp'] < 175)
+                    object_['level'] = 7;
+                else if (object_['exp'] >= 175 && object_['exp'] < 200)
+                    object_['level'] = 8;
+                else if (object_['exp'] >= 200 && object_['exp'] < 225)
+                    object_['level'] = 9;
+                else if (object_['exp'] >= 225 && object_['exp'] < 250)
+                    object_['level'] = 10;
+                else if (object_['exp'] >= 250 && object_['exp'] < 275)
+                    object_['level'] = 11;
+                else if (object_['exp'] >= 275 && object_['exp'] < 300)
+                    object_['level'] = 12;
+                else if (object_['exp'] >= 300 && object_['exp'] < 325)
+                    object_['level'] = 13;
+                else if (object_['exp'] >= 325 && object_['exp'] < 375)
+                    object_['level'] = 14;
+                else if (object_['exp'] >= 375 && object_['exp'] < 425)
+                    object_['level'] = 15;
+                else if (object_['exp'] >= 425 && object_['exp'] < 475)
+                    object_['level'] = 16;
+                else if (object_['exp'] >= 475 && object_['exp'] < 525)
+                    object_['level'] = 17;
+                else if (object_['exp'] >= 525 && object_['exp'] < 575)
+                    object_['level'] = 18;
+                else if (object_['exp'] >= 575 && object_['exp'] < 625)
+                    object_['level'] = 19;
+                else
+                    object_['level'] = 20;
 
                 localStorage.setItem('player', JSON.stringify(object_));
 
@@ -520,14 +701,10 @@ export default {
     .quests-page__hero-level {
         font-size: 26px;
         color: #FFFFFF;
+        margin-right: 10px;
     }
 
     .quests-page__hero-balance {
-        font-size: 26px;
-        color: #FFFFFF;
-    }
-
-    .quests-page__hero-space {
         font-size: 26px;
         color: #FFFFFF;
     }
@@ -556,5 +733,29 @@ export default {
     .quests-page__requirement {
         font-size: 20px;
         color: #FFFFFF;
+    }
+
+    .fa-male {
+        font-size: 20px;
+        color: blue;
+        margin-right: 5px;
+    }
+
+    .fa-female {
+        font-size: 20px;
+        color: pink;
+        margin-right: 5px;
+    }
+
+    .fa-coins {
+        font-size: 20px;
+        color: orange;
+        margin-right: 5px;
+    }
+
+    .fa-arrow-up {
+        font-size: 20px;
+        color: green;
+        margin-right: 5px;
     }
 </style>

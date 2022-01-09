@@ -98,13 +98,11 @@
             </div>
             <div class="row px-3 pb-4">
                 <div class="col">
-                    <span id='shop-page__gender' class='shop-page__hero-gender'></span>
-                    <span id='shop-page__login' class='shop-page__hero-name'></span>
+                    <i id='shop-page__gender'></i><span id='shop-page__login' class='shop-page__hero-name'></span>
                 </div>
                 <div class="col">
-                    <span id='shop-page__level' class='shop-page__hero-level'></span>
-                    <span id='shop-page__space' class='shop-page__hero-space'></span>
-                    <span id='shop-page__balance' class='shop-page__hero-balance'></span>
+                    <i class="fas fa-arrow-up"></i><span id='shop-page__level' class='shop-page__hero-level'></span>
+                    <i class='fas fa-coins'></i><span id='shop-page__balance' class='shop-page__hero-balance'></span>
                 </div>
             </div>
       </div>
@@ -152,10 +150,13 @@ export default {
                 document.getElementById('weapon-hunter-2').innerText = 'Купить';
         }
 
-        document.getElementById('shop-page__gender').innerText = JSON.parse(localStorage.getItem('player'))['gender'];
+        if (JSON.parse(localStorage.getItem('player'))['gender'] == 'male')
+            document.getElementById('shop-page__gender').classList.add('fas', 'fa-male');
+        else
+            document.getElementById('shop-page__gender').classList.add('fas', 'fa-female');
+        
         document.getElementById('shop-page__login').innerText = JSON.parse(localStorage.getItem('player'))['login'];
         document.getElementById('shop-page__level').innerText = JSON.parse(localStorage.getItem('player'))['level'];
-        document.getElementById('shop-page__space').innerText = '|';
         document.getElementById('shop-page__balance').innerText = JSON.parse(localStorage.getItem('player'))['balance'];
     },
     methods: {
@@ -541,11 +542,6 @@ export default {
         color: #FFFFFF;
     }
 
-    .shop-page__hero-space {
-        font-size: 26px;
-        color: #FFFFFF;
-    }
-
     .shop-page__header {
         font-size: 24px;
         color: #FFFFFF;
@@ -570,5 +566,29 @@ export default {
     .shop-page__class {
         font-size: 20px;
         color: #FFFFFF;
+    }
+
+    .fa-male {
+        font-size: 20px;
+        color: blue;
+        margin-right: 5px;
+    }
+
+    .fa-female {
+        font-size: 20px;
+        color: pink;
+        margin-right: 5px;
+    }
+
+    .fa-coins {
+        font-size: 20px;
+        color: orange;
+        margin-right: 5px;
+    }
+
+    .fa-arrow-up {
+        font-size: 20px;
+        color: green;
+        margin-right: 5px;
     }
 </style>

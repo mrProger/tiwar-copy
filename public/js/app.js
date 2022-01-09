@@ -5251,6 +5251,250 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Arena.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Arena.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  beforeMount: function beforeMount() {
+    if ((localStorage.getItem('player') === null || localStorage.getItem('player') == '') && (localStorage.getItem('auth') === null || localStorage.getItem('auth') == 'false')) document.location = '/';
+  },
+  mounted: function mounted() {
+    if (JSON.parse(localStorage.getItem('player'))['gender'] == 'male') document.getElementById('arena-page__gender').classList.add('fas', 'fa-male');else document.getElementById('arena-page__gender').classList.add('fas', 'fa-female');
+    document.getElementById('arena-page__login').innerText = JSON.parse(localStorage.getItem('player'))['login'];
+    document.getElementById('arena-page__level').innerText = JSON.parse(localStorage.getItem('player'))['level'];
+    document.getElementById('arena-page__balance').innerText = JSON.parse(localStorage.getItem('player'))['balance'];
+  },
+  methods: {
+    logoutButtonClick: function logoutButtonClick() {
+      fetch('/api/writeallplayerdata', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({
+          'login': JSON.parse(localStorage.getItem('player'))['login'],
+          'level': JSON.parse(localStorage.getItem('player'))['level'],
+          'exp': JSON.parse(localStorage.getItem('player'))['exp'],
+          'balance': JSON.parse(localStorage.getItem('player'))['balance'],
+          'quest1': JSON.parse(localStorage.getItem('player'))['quest1'],
+          'quest2': JSON.parse(localStorage.getItem('player'))['quest2'],
+          'quest3': JSON.parse(localStorage.getItem('player'))['quest3'],
+          'quest4': JSON.parse(localStorage.getItem('player'))['quest4'],
+          'quest5': JSON.parse(localStorage.getItem('player'))['quest5'],
+          'quest6': JSON.parse(localStorage.getItem('player'))['quest6']
+        })
+      }).then(function (response) {
+        return response.text().then(function (text) {
+          if (text == 'true') {
+            localStorage.removeItem('player');
+            localStorage.removeItem('auth');
+            document.location = '/';
+          } else alert(text);
+        });
+      });
+    },
+    myHeroButtonClick: function myHeroButtonClick() {
+      return document.location = 'myhero';
+    },
+    homeButtonClick: function homeButtonClick() {
+      return document.location = 'game';
+    },
+    startEasyBattle: function startEasyBattle() {
+      var random = Math.floor(Math.random() * 4);
+
+      if (random == 0 || random == 1 || random == 2) {
+        alert('Поздравляем! Вы победили\nНаграда: 2 опыта и 10 монет');
+        var object_ = JSON.parse(localStorage.getItem('player'));
+        object_['exp'] += 2;
+        object_['balance'] += 10;
+        if (object_['exp'] >= 5 && object_['exp'] < 10) object_['level'] = 2;else if (object_['exp'] >= 10 && object_['exp'] < 15) object_['level'] = 3;else if (object_['exp'] >= 15 && object_['exp'] < 20) object_['level'] = 4;else if (object_['exp'] >= 20 && object_['exp'] < 25) object_['level'] = 5;
+        localStorage.setItem('player', JSON.stringify(object_));
+        fetch('/api/writeallplayerdata', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+          },
+          body: JSON.stringify({
+            'login': JSON.parse(localStorage.getItem('player'))['login'],
+            'level': JSON.parse(localStorage.getItem('player'))['level'],
+            'exp': JSON.parse(localStorage.getItem('player'))['exp'],
+            'balance': JSON.parse(localStorage.getItem('player'))['balance'],
+            'attack': JSON.parse(localStorage.getItem('player'))['attack'],
+            'weapon': JSON.parse(localStorage.getItem('player'))['weapon'],
+            'quest1': JSON.parse(localStorage.getItem('player'))['quest1'],
+            'quest2': JSON.parse(localStorage.getItem('player'))['quest2'],
+            'quest3': JSON.parse(localStorage.getItem('player'))['quest3'],
+            'quest4': JSON.parse(localStorage.getItem('player'))['quest4'],
+            'quest5': JSON.parse(localStorage.getItem('player'))['quest5'],
+            'quest6': JSON.parse(localStorage.getItem('player'))['quest6'],
+            'weapon1_buying': JSON.parse(localStorage.getItem('player'))['weapon1_buying'],
+            'weapon2_buying': JSON.parse(localStorage.getItem('player'))['weapon2_buying']
+          })
+        }).then(function (response) {
+          return response.text().then(function (text) {
+            if (text == 'false') alert(text);else document.location.reload();
+          });
+        });
+      } else alert('К сожалению, вы проиграли!');
+    },
+    startMediumBattle: function startMediumBattle() {
+      var random = Math.floor(Math.random() * 4);
+
+      if (random == 0 || random == 1) {
+        alert('Поздравляем! Вы победили\nНаграда: 5 опыта и 20 монет');
+        var object_ = JSON.parse(localStorage.getItem('player'));
+        object_['exp'] += 5;
+        object_['balance'] += 20;
+        if (object_['exp'] >= 25 && object_['exp'] < 50) object_['level'] = 2;else if (object_['exp'] >= 50 && object_['exp'] < 75) object_['level'] = 3;else if (object_['exp'] >= 75 && object_['exp'] < 100) object_['level'] = 4;else if (object_['exp'] >= 100 && object_['exp'] < 125) object_['level'] = 5;else if (object_['exp'] >= 125 && object_['exp'] < 150) object_['level'] = 6;else if (object_['exp'] >= 150 && object_['exp'] < 175) object_['level'] = 7;else if (object_['exp'] >= 175 && object_['exp'] < 200) object_['level'] = 8;else if (object_['exp'] >= 200 && object_['exp'] < 225) object_['level'] = 9;else if (object_['exp'] >= 225 && object_['exp'] < 250) object_['level'] = 10;else if (object_['exp'] >= 250 && object_['exp'] < 275) object_['level'] = 11;else if (object_['exp'] >= 275 && object_['exp'] < 300) object_['level'] = 12;else if (object_['exp'] >= 300 && object_['exp'] < 325) object_['level'] = 13;else if (object_['exp'] >= 325 && object_['exp'] < 375) object_['level'] = 14;else if (object_['exp'] >= 375 && object_['exp'] < 425) object_['level'] = 15;else if (object_['exp'] >= 425 && object_['exp'] < 475) object_['level'] = 16;else if (object_['exp'] >= 475 && object_['exp'] < 525) object_['level'] = 17;else if (object_['exp'] >= 525 && object_['exp'] < 575) object_['level'] = 18;else if (object_['exp'] >= 575 && object_['exp'] < 625) object_['level'] = 19;else object_['level'] = 20;
+        localStorage.setItem('player', JSON.stringify(object_));
+        fetch('/api/writeallplayerdata', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+          },
+          body: JSON.stringify({
+            'login': JSON.parse(localStorage.getItem('player'))['login'],
+            'level': JSON.parse(localStorage.getItem('player'))['level'],
+            'exp': JSON.parse(localStorage.getItem('player'))['exp'],
+            'balance': JSON.parse(localStorage.getItem('player'))['balance'],
+            'attack': JSON.parse(localStorage.getItem('player'))['attack'],
+            'weapon': JSON.parse(localStorage.getItem('player'))['weapon'],
+            'quest1': JSON.parse(localStorage.getItem('player'))['quest1'],
+            'quest2': JSON.parse(localStorage.getItem('player'))['quest2'],
+            'quest3': JSON.parse(localStorage.getItem('player'))['quest3'],
+            'quest4': JSON.parse(localStorage.getItem('player'))['quest4'],
+            'quest5': JSON.parse(localStorage.getItem('player'))['quest5'],
+            'quest6': JSON.parse(localStorage.getItem('player'))['quest6'],
+            'weapon1_buying': JSON.parse(localStorage.getItem('player'))['weapon1_buying'],
+            'weapon2_buying': JSON.parse(localStorage.getItem('player'))['weapon2_buying']
+          })
+        }).then(function (response) {
+          return response.text().then(function (text) {
+            if (text == 'false') alert(text);else document.location.reload();
+          });
+        });
+      } else alert('К сожалению, вы проиграли!');
+    },
+    startHardBattle: function startHardBattle() {
+      var random = Math.floor(Math.random() * 4);
+
+      if (random == 0) {
+        alert('Поздравляем! Вы победили\nНаграда: 15 опыта и 30 монет');
+        var object_ = JSON.parse(localStorage.getItem('player'));
+        object_['exp'] += 15;
+        object_['balance'] += 30;
+        if (object_['exp'] >= 5 && object_['exp'] < 10) object_['level'] = 2;else if (object_['exp'] >= 10 && object_['exp'] < 15) object_['level'] = 3;else if (object_['exp'] >= 15 && object_['exp'] < 20) object_['level'] = 4;else if (object_['exp'] >= 20 && object_['exp'] < 25) object_['level'] = 5;
+        localStorage.setItem('player', JSON.stringify(object_));
+        fetch('/api/writeallplayerdata', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+          },
+          body: JSON.stringify({
+            'login': JSON.parse(localStorage.getItem('player'))['login'],
+            'level': JSON.parse(localStorage.getItem('player'))['level'],
+            'exp': JSON.parse(localStorage.getItem('player'))['exp'],
+            'balance': JSON.parse(localStorage.getItem('player'))['balance'],
+            'attack': JSON.parse(localStorage.getItem('player'))['attack'],
+            'weapon': JSON.parse(localStorage.getItem('player'))['weapon'],
+            'quest1': JSON.parse(localStorage.getItem('player'))['quest1'],
+            'quest2': JSON.parse(localStorage.getItem('player'))['quest2'],
+            'quest3': JSON.parse(localStorage.getItem('player'))['quest3'],
+            'quest4': JSON.parse(localStorage.getItem('player'))['quest4'],
+            'quest5': JSON.parse(localStorage.getItem('player'))['quest5'],
+            'quest6': JSON.parse(localStorage.getItem('player'))['quest6'],
+            'weapon1_buying': JSON.parse(localStorage.getItem('player'))['weapon1_buying'],
+            'weapon2_buying': JSON.parse(localStorage.getItem('player'))['weapon2_buying']
+          })
+        }).then(function (response) {
+          return response.text().then(function (text) {
+            if (text == 'false') alert(text);else document.location.reload();
+          });
+        });
+      } else alert('К сожалению, вы проиграли!');
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Game.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Game.vue?vue&type=script&lang=js& ***!
@@ -5317,17 +5561,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   beforeMount: function beforeMount() {
     if ((localStorage.getItem('player') === null || localStorage.getItem('player') == '') && (localStorage.getItem('auth') === null || localStorage.getItem('auth') == 'false')) document.location = '/';
   },
   mounted: function mounted() {
-    document.getElementById('game-page__gender').innerText = JSON.parse(localStorage.getItem('player'))['gender'];
+    if (JSON.parse(localStorage.getItem('player'))['gender'] == 'male') document.getElementById('game-page__gender').classList.add('fas', 'fa-male');else document.getElementById('game-page__gender').classList.add('fas', 'fa-female');
     document.getElementById('game-page__login').innerText = JSON.parse(localStorage.getItem('player'))['login'];
     document.getElementById('game-page__level').innerText = JSON.parse(localStorage.getItem('player'))['level'];
-    document.getElementById('game-page__space').innerText = '|';
     document.getElementById('game-page__balance').innerText = JSON.parse(localStorage.getItem('player'))['balance'];
   },
   methods: {
@@ -5364,7 +5605,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     arenaButtonClick: function arenaButtonClick() {
-      alert('Арена');
+      return document.location = 'arena';
     },
     questsButtonClick: function questsButtonClick() {
       return document.location = 'quests';
@@ -5888,8 +6129,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   beforeMount: function beforeMount() {
     if ((localStorage.getItem('player') === null || localStorage.getItem('player') == '') && (localStorage.getItem('auth') === null || localStorage.getItem('auth') == 'false')) document.location = '/';
@@ -5901,10 +6140,9 @@ __webpack_require__.r(__webpack_exports__);
     if (JSON.parse(localStorage.getItem('player'))['quest4']) document.getElementById('quest4-button').innerText = 'Награда получена';else document.getElementById('quest4-button').innerText = 'Получить награду';
     if (JSON.parse(localStorage.getItem('player'))['quest5']) document.getElementById('quest5-button').innerText = 'Награда получена';else document.getElementById('quest5-button').innerText = 'Получить награду';
     if (JSON.parse(localStorage.getItem('player'))['quest6']) document.getElementById('quest6-button').innerText = 'Награда получена';else document.getElementById('quest6-button').innerText = 'Получить награду';
-    document.getElementById('quests-page__gender').innerText = JSON.parse(localStorage.getItem('player'))['gender'];
+    if (JSON.parse(localStorage.getItem('player'))['gender'] == 'male') document.getElementById('quests-page__gender').classList.add('fas', 'fa-male');else document.getElementById('quests-page__gender').classList.add('fas', 'fa-female');
     document.getElementById('quests-page__login').innerText = JSON.parse(localStorage.getItem('player'))['login'];
     document.getElementById('quests-page__level').innerText = JSON.parse(localStorage.getItem('player'))['level'];
-    document.getElementById('quests-page__space').innerText = '|';
     document.getElementById('quests-page__balance').innerText = JSON.parse(localStorage.getItem('player'))['balance'];
   },
   methods: {
@@ -5943,7 +6181,7 @@ __webpack_require__.r(__webpack_exports__);
         object_['exp'] += 5;
         object_['balance'] += 50;
         document.getElementById('quest1-button').innerText = 'Награда получена';
-        if (object_['exp'] >= 5 && object_['exp'] < 10) object_['level'] = 2;else if (object_['exp'] >= 10 && object_['exp'] < 15) object_['level'] = 3;else if (object_['exp'] >= 15 && object_['exp'] < 20) object_['level'] = 4;else if (object_['exp'] >= 20 && object_['exp'] < 25) object_['level'] = 5;
+        if (object_['exp'] >= 25 && object_['exp'] < 50) object_['level'] = 2;else if (object_['exp'] >= 50 && object_['exp'] < 75) object_['level'] = 3;else if (object_['exp'] >= 75 && object_['exp'] < 100) object_['level'] = 4;else if (object_['exp'] >= 100 && object_['exp'] < 125) object_['level'] = 5;else if (object_['exp'] >= 125 && object_['exp'] < 150) object_['level'] = 6;else if (object_['exp'] >= 150 && object_['exp'] < 175) object_['level'] = 7;else if (object_['exp'] >= 175 && object_['exp'] < 200) object_['level'] = 8;else if (object_['exp'] >= 200 && object_['exp'] < 225) object_['level'] = 9;else if (object_['exp'] >= 225 && object_['exp'] < 250) object_['level'] = 10;else if (object_['exp'] >= 250 && object_['exp'] < 275) object_['level'] = 11;else if (object_['exp'] >= 275 && object_['exp'] < 300) object_['level'] = 12;else if (object_['exp'] >= 300 && object_['exp'] < 325) object_['level'] = 13;else if (object_['exp'] >= 325 && object_['exp'] < 375) object_['level'] = 14;else if (object_['exp'] >= 375 && object_['exp'] < 425) object_['level'] = 15;else if (object_['exp'] >= 425 && object_['exp'] < 475) object_['level'] = 16;else if (object_['exp'] >= 475 && object_['exp'] < 525) object_['level'] = 17;else if (object_['exp'] >= 525 && object_['exp'] < 575) object_['level'] = 18;else if (object_['exp'] >= 575 && object_['exp'] < 625) object_['level'] = 19;else object_['level'] = 20;
         localStorage.setItem('player', JSON.stringify(object_));
         fetch('/api/writeallplayerdata', {
           method: 'POST',
@@ -5976,7 +6214,7 @@ __webpack_require__.r(__webpack_exports__);
         object_['exp'] += 5;
         object_['balance'] += 50;
         document.getElementById('quest2-button').innerText = 'Награда получена';
-        if (object_['exp'] >= 5 && object_['exp'] < 10) object_['level'] = 2;else if (object_['exp'] >= 10 && object_['exp'] < 15) object_['level'] = 3;else if (object_['exp'] >= 15 && object_['exp'] < 20) object_['level'] = 4;else if (object_['exp'] >= 20 && object_['exp'] < 25) object_['level'] = 5;
+        if (object_['exp'] >= 25 && object_['exp'] < 50) object_['level'] = 2;else if (object_['exp'] >= 50 && object_['exp'] < 75) object_['level'] = 3;else if (object_['exp'] >= 75 && object_['exp'] < 100) object_['level'] = 4;else if (object_['exp'] >= 100 && object_['exp'] < 125) object_['level'] = 5;else if (object_['exp'] >= 125 && object_['exp'] < 150) object_['level'] = 6;else if (object_['exp'] >= 150 && object_['exp'] < 175) object_['level'] = 7;else if (object_['exp'] >= 175 && object_['exp'] < 200) object_['level'] = 8;else if (object_['exp'] >= 200 && object_['exp'] < 225) object_['level'] = 9;else if (object_['exp'] >= 225 && object_['exp'] < 250) object_['level'] = 10;else if (object_['exp'] >= 250 && object_['exp'] < 275) object_['level'] = 11;else if (object_['exp'] >= 275 && object_['exp'] < 300) object_['level'] = 12;else if (object_['exp'] >= 300 && object_['exp'] < 325) object_['level'] = 13;else if (object_['exp'] >= 325 && object_['exp'] < 375) object_['level'] = 14;else if (object_['exp'] >= 375 && object_['exp'] < 425) object_['level'] = 15;else if (object_['exp'] >= 425 && object_['exp'] < 475) object_['level'] = 16;else if (object_['exp'] >= 475 && object_['exp'] < 525) object_['level'] = 17;else if (object_['exp'] >= 525 && object_['exp'] < 575) object_['level'] = 18;else if (object_['exp'] >= 575 && object_['exp'] < 625) object_['level'] = 19;else object_['level'] = 20;
         localStorage.setItem('player', JSON.stringify(object_));
         fetch('/api/writeallplayerdata', {
           method: 'POST',
@@ -6009,7 +6247,7 @@ __webpack_require__.r(__webpack_exports__);
         object_['exp'] += 5;
         object_['balance'] += 50;
         document.getElementById('quest3-button').innerText = 'Награда получена';
-        if (object_['exp'] >= 5 && object_['exp'] < 10) object_['level'] = 2;else if (object_['exp'] >= 10 && object_['exp'] < 15) object_['level'] = 3;else if (object_['exp'] >= 15 && object_['exp'] < 20) object_['level'] = 4;else if (object_['exp'] >= 20 && object_['exp'] < 25) object_['level'] = 5;
+        if (object_['exp'] >= 25 && object_['exp'] < 50) object_['level'] = 2;else if (object_['exp'] >= 50 && object_['exp'] < 75) object_['level'] = 3;else if (object_['exp'] >= 75 && object_['exp'] < 100) object_['level'] = 4;else if (object_['exp'] >= 100 && object_['exp'] < 125) object_['level'] = 5;else if (object_['exp'] >= 125 && object_['exp'] < 150) object_['level'] = 6;else if (object_['exp'] >= 150 && object_['exp'] < 175) object_['level'] = 7;else if (object_['exp'] >= 175 && object_['exp'] < 200) object_['level'] = 8;else if (object_['exp'] >= 200 && object_['exp'] < 225) object_['level'] = 9;else if (object_['exp'] >= 225 && object_['exp'] < 250) object_['level'] = 10;else if (object_['exp'] >= 250 && object_['exp'] < 275) object_['level'] = 11;else if (object_['exp'] >= 275 && object_['exp'] < 300) object_['level'] = 12;else if (object_['exp'] >= 300 && object_['exp'] < 325) object_['level'] = 13;else if (object_['exp'] >= 325 && object_['exp'] < 375) object_['level'] = 14;else if (object_['exp'] >= 375 && object_['exp'] < 425) object_['level'] = 15;else if (object_['exp'] >= 425 && object_['exp'] < 475) object_['level'] = 16;else if (object_['exp'] >= 475 && object_['exp'] < 525) object_['level'] = 17;else if (object_['exp'] >= 525 && object_['exp'] < 575) object_['level'] = 18;else if (object_['exp'] >= 575 && object_['exp'] < 625) object_['level'] = 19;else object_['level'] = 20;
         localStorage.setItem('player', JSON.stringify(object_));
         fetch('/api/writeallplayerdata', {
           method: 'POST',
@@ -6042,7 +6280,7 @@ __webpack_require__.r(__webpack_exports__);
         object_['exp'] += 5;
         object_['balance'] += 50;
         document.getElementById('quest4-button').innerText = 'Награда получена';
-        if (object_['exp'] >= 5 && object_['exp'] < 10) object_['level'] = 2;else if (object_['exp'] >= 10 && object_['exp'] < 15) object_['level'] = 3;else if (object_['exp'] >= 15 && object_['exp'] < 20) object_['level'] = 4;else if (object_['exp'] >= 20 && object_['exp'] < 25) object_['level'] = 5;
+        if (object_['exp'] >= 25 && object_['exp'] < 50) object_['level'] = 2;else if (object_['exp'] >= 50 && object_['exp'] < 75) object_['level'] = 3;else if (object_['exp'] >= 75 && object_['exp'] < 100) object_['level'] = 4;else if (object_['exp'] >= 100 && object_['exp'] < 125) object_['level'] = 5;else if (object_['exp'] >= 125 && object_['exp'] < 150) object_['level'] = 6;else if (object_['exp'] >= 150 && object_['exp'] < 175) object_['level'] = 7;else if (object_['exp'] >= 175 && object_['exp'] < 200) object_['level'] = 8;else if (object_['exp'] >= 200 && object_['exp'] < 225) object_['level'] = 9;else if (object_['exp'] >= 225 && object_['exp'] < 250) object_['level'] = 10;else if (object_['exp'] >= 250 && object_['exp'] < 275) object_['level'] = 11;else if (object_['exp'] >= 275 && object_['exp'] < 300) object_['level'] = 12;else if (object_['exp'] >= 300 && object_['exp'] < 325) object_['level'] = 13;else if (object_['exp'] >= 325 && object_['exp'] < 375) object_['level'] = 14;else if (object_['exp'] >= 375 && object_['exp'] < 425) object_['level'] = 15;else if (object_['exp'] >= 425 && object_['exp'] < 475) object_['level'] = 16;else if (object_['exp'] >= 475 && object_['exp'] < 525) object_['level'] = 17;else if (object_['exp'] >= 525 && object_['exp'] < 575) object_['level'] = 18;else if (object_['exp'] >= 575 && object_['exp'] < 625) object_['level'] = 19;else object_['level'] = 20;
         localStorage.setItem('player', JSON.stringify(object_));
         fetch('/api/writeallplayerdata', {
           method: 'POST',
@@ -6075,7 +6313,7 @@ __webpack_require__.r(__webpack_exports__);
         object_['exp'] += 5;
         object_['balance'] += 50;
         document.getElementById('quest5-button').innerText = 'Награда получена';
-        if (object_['exp'] >= 5 && object_['exp'] < 10) object_['level'] = 2;else if (object_['exp'] >= 10 && object_['exp'] < 15) object_['level'] = 3;else if (object_['exp'] >= 15 && object_['exp'] < 20) object_['level'] = 4;else if (object_['exp'] >= 20 && object_['exp'] < 25) object_['level'] = 5;
+        if (object_['exp'] >= 25 && object_['exp'] < 50) object_['level'] = 2;else if (object_['exp'] >= 50 && object_['exp'] < 75) object_['level'] = 3;else if (object_['exp'] >= 75 && object_['exp'] < 100) object_['level'] = 4;else if (object_['exp'] >= 100 && object_['exp'] < 125) object_['level'] = 5;else if (object_['exp'] >= 125 && object_['exp'] < 150) object_['level'] = 6;else if (object_['exp'] >= 150 && object_['exp'] < 175) object_['level'] = 7;else if (object_['exp'] >= 175 && object_['exp'] < 200) object_['level'] = 8;else if (object_['exp'] >= 200 && object_['exp'] < 225) object_['level'] = 9;else if (object_['exp'] >= 225 && object_['exp'] < 250) object_['level'] = 10;else if (object_['exp'] >= 250 && object_['exp'] < 275) object_['level'] = 11;else if (object_['exp'] >= 275 && object_['exp'] < 300) object_['level'] = 12;else if (object_['exp'] >= 300 && object_['exp'] < 325) object_['level'] = 13;else if (object_['exp'] >= 325 && object_['exp'] < 375) object_['level'] = 14;else if (object_['exp'] >= 375 && object_['exp'] < 425) object_['level'] = 15;else if (object_['exp'] >= 425 && object_['exp'] < 475) object_['level'] = 16;else if (object_['exp'] >= 475 && object_['exp'] < 525) object_['level'] = 17;else if (object_['exp'] >= 525 && object_['exp'] < 575) object_['level'] = 18;else if (object_['exp'] >= 575 && object_['exp'] < 625) object_['level'] = 19;else object_['level'] = 20;
         localStorage.setItem('player', JSON.stringify(object_));
         fetch('/api/writeallplayerdata', {
           method: 'POST',
@@ -6110,7 +6348,7 @@ __webpack_require__.r(__webpack_exports__);
         object_['exp'] += 5;
         object_['balance'] += 50;
         document.getElementById('quest6-button').innerText = 'Награда получена';
-        if (object_['exp'] >= 5 && object_['exp'] < 10) object_['level'] = 2;else if (object_['exp'] >= 10 && object_['exp'] < 15) object_['level'] = 3;else if (object_['exp'] >= 15 && object_['exp'] < 20) object_['level'] = 4;else if (object_['exp'] >= 20 && object_['exp'] < 25) object_['level'] = 5;
+        if (object_['exp'] >= 25 && object_['exp'] < 50) object_['level'] = 2;else if (object_['exp'] >= 50 && object_['exp'] < 75) object_['level'] = 3;else if (object_['exp'] >= 75 && object_['exp'] < 100) object_['level'] = 4;else if (object_['exp'] >= 100 && object_['exp'] < 125) object_['level'] = 5;else if (object_['exp'] >= 125 && object_['exp'] < 150) object_['level'] = 6;else if (object_['exp'] >= 150 && object_['exp'] < 175) object_['level'] = 7;else if (object_['exp'] >= 175 && object_['exp'] < 200) object_['level'] = 8;else if (object_['exp'] >= 200 && object_['exp'] < 225) object_['level'] = 9;else if (object_['exp'] >= 225 && object_['exp'] < 250) object_['level'] = 10;else if (object_['exp'] >= 250 && object_['exp'] < 275) object_['level'] = 11;else if (object_['exp'] >= 275 && object_['exp'] < 300) object_['level'] = 12;else if (object_['exp'] >= 300 && object_['exp'] < 325) object_['level'] = 13;else if (object_['exp'] >= 325 && object_['exp'] < 375) object_['level'] = 14;else if (object_['exp'] >= 375 && object_['exp'] < 425) object_['level'] = 15;else if (object_['exp'] >= 425 && object_['exp'] < 475) object_['level'] = 16;else if (object_['exp'] >= 475 && object_['exp'] < 525) object_['level'] = 17;else if (object_['exp'] >= 525 && object_['exp'] < 575) object_['level'] = 18;else if (object_['exp'] >= 575 && object_['exp'] < 625) object_['level'] = 19;else object_['level'] = 20;
         localStorage.setItem('player', JSON.stringify(object_));
         fetch('/api/writeallplayerdata', {
           method: 'POST',
@@ -6273,8 +6511,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   beforeMount: function beforeMount() {
     if ((localStorage.getItem('player') === null || localStorage.getItem('player') == '') && (localStorage.getItem('auth') === null || localStorage.getItem('auth') == 'false')) document.location = '/';
@@ -6291,10 +6527,9 @@ __webpack_require__.r(__webpack_exports__);
       if (JSON.parse(localStorage.getItem('player'))['weapon2_buying'] == 1) document.getElementById('weapon-hunter-2').innerText = 'Куплено';else document.getElementById('weapon-hunter-2').innerText = 'Купить';
     }
 
-    document.getElementById('shop-page__gender').innerText = JSON.parse(localStorage.getItem('player'))['gender'];
+    if (JSON.parse(localStorage.getItem('player'))['gender'] == 'male') document.getElementById('shop-page__gender').classList.add('fas', 'fa-male');else document.getElementById('shop-page__gender').classList.add('fas', 'fa-female');
     document.getElementById('shop-page__login').innerText = JSON.parse(localStorage.getItem('player'))['login'];
     document.getElementById('shop-page__level').innerText = JSON.parse(localStorage.getItem('player'))['level'];
-    document.getElementById('shop-page__space').innerText = '|';
     document.getElementById('shop-page__balance').innerText = JSON.parse(localStorage.getItem('player'))['balance'];
   },
   methods: {
@@ -6577,12 +6812,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var _views_Home_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./views/Home.vue */ "./resources/js/views/Home.vue");
 /* harmony import */ var _views_Game_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./views/Game.vue */ "./resources/js/views/Game.vue");
 /* harmony import */ var _views_MyHero_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./views/MyHero.vue */ "./resources/js/views/MyHero.vue");
 /* harmony import */ var _views_Quests_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./views/Quests.vue */ "./resources/js/views/Quests.vue");
 /* harmony import */ var _views_Shop_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./views/Shop.vue */ "./resources/js/views/Shop.vue");
+/* harmony import */ var _views_Arena_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./views/Arena.vue */ "./resources/js/views/Arena.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
@@ -6591,12 +6827,14 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_5__["default"].component('home-page', _views_Home_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_5__["default"].component('game-page', _views_Game_vue__WEBPACK_IMPORTED_MODULE_1__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_5__["default"].component('myhero-page', _views_MyHero_vue__WEBPACK_IMPORTED_MODULE_2__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_5__["default"].component('quests-page', _views_Quests_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_5__["default"].component('shop-page', _views_Shop_vue__WEBPACK_IMPORTED_MODULE_4__["default"]);
-var app = new vue__WEBPACK_IMPORTED_MODULE_5__["default"]({
+
+vue__WEBPACK_IMPORTED_MODULE_6__["default"].component('home-page', _views_Home_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_6__["default"].component('game-page', _views_Game_vue__WEBPACK_IMPORTED_MODULE_1__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_6__["default"].component('myhero-page', _views_MyHero_vue__WEBPACK_IMPORTED_MODULE_2__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_6__["default"].component('quests-page', _views_Quests_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_6__["default"].component('shop-page', _views_Shop_vue__WEBPACK_IMPORTED_MODULE_4__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_6__["default"].component('arena-page', _views_Arena_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
+var app = new vue__WEBPACK_IMPORTED_MODULE_6__["default"]({
   el: '#app'
 });
 
@@ -11665,6 +11903,30 @@ defineJQueryPlugin(Toast);
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Arena.vue?vue&type=style&index=0&lang=css&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Arena.vue?vue&type=style&index=0&lang=css& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.arena-page__underline {\n    border: 3px solid #C8C8C8;\n    border-radius: 10px;\n}\n.arena-page__button {\n    font-size: 20px !important;\n    font-weight: bold !important;\n    color: #FFFFFF;\n    background-color: #40414A !important;\n    border-color: #40414A !important;\n    width: 300px;\n    height: 50px;\n    border-radius: 15px !important;\n}\n.arena-page__button:hover {\n    color: #3E50B8 !important;\n    background-color: #2B2C32 !important;\n    border-color: #2B2C32 !important;\n}\n.arena-page__button__item {\n    font-size: 20px !important;\n    font-weight: bold !important;\n    color: #FFFFFF;\n    background-color: #40414A !important;\n    border-color: #40414A !important;\n    width: 210px;\n    height: 50px;\n    border-radius: 15px !important;\n}\n.arena-page__button__item:hover {\n    color: #3E50B8 !important;\n    background-color: #2B2C32 !important;\n    border-color: #2B2C32 !important;\n}\n.arena-page__hero-gender {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.arena-page__hero-name {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.arena-page__hero-level {\n    font-size: 26px;\n    color: #FFFFFF;\n    margin-right: 10px;\n}\n.arena-page__hero-balance {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.arena-page__header {\n    font-size: 24px;\n    color: #FFFFFF;\n}\n.arena-page__price {\n    font-size: 20px;\n    color: #FFFFFF;\n}\n.card {\n    background-color: #636363 !important;\n    display: inline-block !important;\n    border: none !important;\n}\n.arena-page__award {\n    font-size: 20px;\n    color: #FFFFFF;\n}\n.arena-page__requirement {\n    font-size: 20px;\n    color: #FFFFFF;\n}\n.fa-male {\n    font-size: 20px;\n    color: blue;\n    margin-right: 5px;\n}\n.fa-female {\n    font-size: 20px;\n    color: pink;\n    margin-right: 5px;\n}\n.fa-coins {\n    font-size: 20px;\n    color: orange;\n    margin-right: 5px;\n}\n.fa-arrow-up {\n    font-size: 20px;\n    color: green;\n    margin-right: 5px;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Game.vue?vue&type=style&index=0&lang=css&":
 /*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Game.vue?vue&type=style&index=0&lang=css& ***!
@@ -11682,7 +11944,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.game-page__underline {\n    border: 3px solid #C8C8C8;\n    border-radius: 10px;\n}\n.game-page__button {\n    font-size: 20px !important;\n    font-weight: bold !important;\n    color: #FFFFFF;\n    background-color: #40414A !important;\n    border-color: #40414A !important;\n    width: 350px;\n    height: 50px;\n    border-radius: 15px !important;\n}\n.game-page__button:hover {\n    color: #3E50B8 !important;\n    background-color: #2B2C32 !important;\n    border-color: #2B2C32 !important;\n}\n.game-page__hero-gender {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.game-page__hero-name {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.game-page__hero-level {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.game-page__hero-balance {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.game-page__hero-space {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.game-page__underline {\n    border: 3px solid #C8C8C8;\n    border-radius: 10px;\n}\n.game-page__button {\n    font-size: 20px !important;\n    font-weight: bold !important;\n    color: #FFFFFF;\n    background-color: #40414A !important;\n    border-color: #40414A !important;\n    width: 350px;\n    height: 50px;\n    border-radius: 15px !important;\n}\n.game-page__button:hover {\n    color: #3E50B8 !important;\n    background-color: #2B2C32 !important;\n    border-color: #2B2C32 !important;\n}\n.game-page__hero-gender {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.game-page__hero-name {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.game-page__hero-level {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.game-page__hero-balance {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.fa-male {\n    font-size: 20px;\n    color: blue;\n    margin-right: 5px;\n}\n.fa-female {\n    font-size: 20px;\n    color: pink;\n    margin-right: 5px;\n}\n.fa-coins {\n    font-size: 20px;\n    color: orange;\n    margin-right: 5px;\n}\n.fa-arrow-up {\n    font-size: 20px;\n    color: green;\n    margin-right: 5px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -11754,7 +12016,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.quests-page__underline {\n    border: 3px solid #C8C8C8;\n    border-radius: 10px;\n}\n.quests-page__button {\n    font-size: 20px !important;\n    font-weight: bold !important;\n    color: #FFFFFF;\n    background-color: #40414A !important;\n    border-color: #40414A !important;\n    width: 300px;\n    height: 50px;\n    border-radius: 15px !important;\n}\n.quests-page__button:hover {\n    color: #3E50B8 !important;\n    background-color: #2B2C32 !important;\n    border-color: #2B2C32 !important;\n}\n.quests-page__button__item {\n    font-size: 20px !important;\n    font-weight: bold !important;\n    color: #FFFFFF;\n    background-color: #40414A !important;\n    border-color: #40414A !important;\n    width: 210px;\n    height: 50px;\n    border-radius: 15px !important;\n}\n.quests-page__button__item:hover {\n    color: #3E50B8 !important;\n    background-color: #2B2C32 !important;\n    border-color: #2B2C32 !important;\n}\n.quests-page__hero-gender {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.quests-page__hero-name {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.quests-page__hero-level {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.quests-page__hero-balance {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.quests-page__hero-space {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.quests-page__header {\n    font-size: 24px;\n    color: #FFFFFF;\n}\n.quests-page__price {\n    font-size: 20px;\n    color: #FFFFFF;\n}\n.card {\n    background-color: #636363 !important;\n    display: inline-block !important;\n    border: none !important;\n}\n.quests-page__award {\n    font-size: 20px;\n    color: #FFFFFF;\n}\n.quests-page__requirement {\n    font-size: 20px;\n    color: #FFFFFF;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.quests-page__underline {\n    border: 3px solid #C8C8C8;\n    border-radius: 10px;\n}\n.quests-page__button {\n    font-size: 20px !important;\n    font-weight: bold !important;\n    color: #FFFFFF;\n    background-color: #40414A !important;\n    border-color: #40414A !important;\n    width: 300px;\n    height: 50px;\n    border-radius: 15px !important;\n}\n.quests-page__button:hover {\n    color: #3E50B8 !important;\n    background-color: #2B2C32 !important;\n    border-color: #2B2C32 !important;\n}\n.quests-page__button__item {\n    font-size: 20px !important;\n    font-weight: bold !important;\n    color: #FFFFFF;\n    background-color: #40414A !important;\n    border-color: #40414A !important;\n    width: 210px;\n    height: 50px;\n    border-radius: 15px !important;\n}\n.quests-page__button__item:hover {\n    color: #3E50B8 !important;\n    background-color: #2B2C32 !important;\n    border-color: #2B2C32 !important;\n}\n.quests-page__hero-gender {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.quests-page__hero-name {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.quests-page__hero-level {\n    font-size: 26px;\n    color: #FFFFFF;\n    margin-right: 10px;\n}\n.quests-page__hero-balance {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.quests-page__header {\n    font-size: 24px;\n    color: #FFFFFF;\n}\n.quests-page__price {\n    font-size: 20px;\n    color: #FFFFFF;\n}\n.card {\n    background-color: #636363 !important;\n    display: inline-block !important;\n    border: none !important;\n}\n.quests-page__award {\n    font-size: 20px;\n    color: #FFFFFF;\n}\n.quests-page__requirement {\n    font-size: 20px;\n    color: #FFFFFF;\n}\n.fa-male {\n    font-size: 20px;\n    color: blue;\n    margin-right: 5px;\n}\n.fa-female {\n    font-size: 20px;\n    color: pink;\n    margin-right: 5px;\n}\n.fa-coins {\n    font-size: 20px;\n    color: orange;\n    margin-right: 5px;\n}\n.fa-arrow-up {\n    font-size: 20px;\n    color: green;\n    margin-right: 5px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -11778,7 +12040,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.shop-page__underline {\n    border: 3px solid #C8C8C8;\n    border-radius: 10px;\n}\n.shop-page__button {\n    font-size: 20px !important;\n    font-weight: bold !important;\n    color: #FFFFFF;\n    background-color: #40414A !important;\n    border-color: #40414A !important;\n    width: 300px;\n    height: 50px;\n    border-radius: 15px !important;\n}\n.shop-page__button:hover {\n    color: #3E50B8 !important;\n    background-color: #2B2C32 !important;\n    border-color: #2B2C32 !important;\n}\n.shop-page__button__item {\n    font-size: 20px !important;\n    font-weight: bold !important;\n    color: #FFFFFF;\n    background-color: #40414A !important;\n    border-color: #40414A !important;\n    width: 200px;\n    height: 50px;\n    border-radius: 15px !important;\n}\n.shop-page__button__item:hover {\n    color: #3E50B8 !important;\n    background-color: #2B2C32 !important;\n    border-color: #2B2C32 !important;\n}\n.shop-page__hero-gender {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.shop-page__hero-name {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.shop-page__hero-level {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.shop-page__hero-balance {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.shop-page__hero-space {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.shop-page__header {\n    font-size: 24px;\n    color: #FFFFFF;\n}\n.shop-page__price {\n    font-size: 20px;\n    color: #FFFFFF;\n}\n.card {\n    background-color: #636363 !important;\n    display: inline-block !important;\n    border: none !important;\n}\n.shop-page__attribute {\n    font-size: 20px;\n    color: #FFFFFF;\n}\n.shop-page__class {\n    font-size: 20px;\n    color: #FFFFFF;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.shop-page__underline {\n    border: 3px solid #C8C8C8;\n    border-radius: 10px;\n}\n.shop-page__button {\n    font-size: 20px !important;\n    font-weight: bold !important;\n    color: #FFFFFF;\n    background-color: #40414A !important;\n    border-color: #40414A !important;\n    width: 300px;\n    height: 50px;\n    border-radius: 15px !important;\n}\n.shop-page__button:hover {\n    color: #3E50B8 !important;\n    background-color: #2B2C32 !important;\n    border-color: #2B2C32 !important;\n}\n.shop-page__button__item {\n    font-size: 20px !important;\n    font-weight: bold !important;\n    color: #FFFFFF;\n    background-color: #40414A !important;\n    border-color: #40414A !important;\n    width: 200px;\n    height: 50px;\n    border-radius: 15px !important;\n}\n.shop-page__button__item:hover {\n    color: #3E50B8 !important;\n    background-color: #2B2C32 !important;\n    border-color: #2B2C32 !important;\n}\n.shop-page__hero-gender {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.shop-page__hero-name {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.shop-page__hero-level {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.shop-page__hero-balance {\n    font-size: 26px;\n    color: #FFFFFF;\n}\n.shop-page__header {\n    font-size: 24px;\n    color: #FFFFFF;\n}\n.shop-page__price {\n    font-size: 20px;\n    color: #FFFFFF;\n}\n.card {\n    background-color: #636363 !important;\n    display: inline-block !important;\n    border: none !important;\n}\n.shop-page__attribute {\n    font-size: 20px;\n    color: #FFFFFF;\n}\n.shop-page__class {\n    font-size: 20px;\n    color: #FFFFFF;\n}\n.fa-male {\n    font-size: 20px;\n    color: blue;\n    margin-right: 5px;\n}\n.fa-female {\n    font-size: 20px;\n    color: pink;\n    margin-right: 5px;\n}\n.fa-coins {\n    font-size: 20px;\n    color: orange;\n    margin-right: 5px;\n}\n.fa-arrow-up {\n    font-size: 20px;\n    color: green;\n    margin-right: 5px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -29280,6 +29542,36 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Arena.vue?vue&type=style&index=0&lang=css&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Arena.vue?vue&type=style&index=0&lang=css& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Arena_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Arena.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Arena.vue?vue&type=style&index=0&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Arena_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Arena_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Game.vue?vue&type=style&index=0&lang=css&":
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Game.vue?vue&type=style&index=0&lang=css& ***!
@@ -29709,6 +30001,47 @@ module.exports = function (list, options) {
 
 /***/ }),
 
+/***/ "./resources/js/views/Arena.vue":
+/*!**************************************!*\
+  !*** ./resources/js/views/Arena.vue ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Arena_vue_vue_type_template_id_eca6e410___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Arena.vue?vue&type=template&id=eca6e410& */ "./resources/js/views/Arena.vue?vue&type=template&id=eca6e410&");
+/* harmony import */ var _Arena_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Arena.vue?vue&type=script&lang=js& */ "./resources/js/views/Arena.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Arena_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Arena.vue?vue&type=style&index=0&lang=css& */ "./resources/js/views/Arena.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _Arena_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Arena_vue_vue_type_template_id_eca6e410___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Arena_vue_vue_type_template_id_eca6e410___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/Arena.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/views/Game.vue":
 /*!*************************************!*\
   !*** ./resources/js/views/Game.vue ***!
@@ -29914,6 +30247,22 @@ component.options.__file = "resources/js/views/Shop.vue"
 
 /***/ }),
 
+/***/ "./resources/js/views/Arena.vue?vue&type=script&lang=js&":
+/*!***************************************************************!*\
+  !*** ./resources/js/views/Arena.vue?vue&type=script&lang=js& ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Arena_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Arena.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Arena.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Arena_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/views/Game.vue?vue&type=script&lang=js&":
 /*!**************************************************************!*\
   !*** ./resources/js/views/Game.vue?vue&type=script&lang=js& ***!
@@ -29994,6 +30343,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/views/Arena.vue?vue&type=style&index=0&lang=css&":
+/*!***********************************************************************!*\
+  !*** ./resources/js/views/Arena.vue?vue&type=style&index=0&lang=css& ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Arena_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Arena.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Arena.vue?vue&type=style&index=0&lang=css&");
+
+
+/***/ }),
+
 /***/ "./resources/js/views/Game.vue?vue&type=style&index=0&lang=css&":
 /*!**********************************************************************!*\
   !*** ./resources/js/views/Game.vue?vue&type=style&index=0&lang=css& ***!
@@ -30055,6 +30417,23 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Shop_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Shop.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Shop.vue?vue&type=style&index=0&lang=css&");
+
+
+/***/ }),
+
+/***/ "./resources/js/views/Arena.vue?vue&type=template&id=eca6e410&":
+/*!*********************************************************************!*\
+  !*** ./resources/js/views/Arena.vue?vue&type=template&id=eca6e410& ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Arena_vue_vue_type_template_id_eca6e410___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Arena_vue_vue_type_template_id_eca6e410___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Arena_vue_vue_type_template_id_eca6e410___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Arena.vue?vue&type=template&id=eca6e410& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Arena.vue?vue&type=template&id=eca6e410&");
 
 
 /***/ }),
@@ -30140,6 +30519,244 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Shop_vue_vue_type_template_id_530160d6___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Shop_vue_vue_type_template_id_530160d6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Shop.vue?vue&type=template&id=530160d6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Shop.vue?vue&type=template&id=530160d6&");
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Arena.vue?vue&type=template&id=eca6e410&":
+/*!************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Arena.vue?vue&type=template&id=eca6e410& ***!
+  \************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { attrs: { id: "arena" } }, [
+    _c("div", { staticClass: "container arena-page" }, [
+      _c("div", { staticClass: "row px-3 pt-3" }, [
+        _c("div", { staticClass: "col d-flex flex-column" }, [
+          _c(
+            "span",
+            {
+              staticClass: "btn btn-primary quests-page__button align-self-end",
+              attrs: { type: "button" },
+              on: { click: _vm.logoutButtonClick },
+            },
+            [_vm._v("Выход")]
+          ),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row pt-5" }, [
+        _c("div", { staticClass: "col d-flex flex-column" }, [
+          _c("div", { staticClass: "align-self-center" }, [
+            _c(
+              "div",
+              { staticClass: "card", staticStyle: { width: "15rem" } },
+              [
+                _c("div", { staticClass: "card-body d-flex flex-column" }, [
+                  _c(
+                    "h5",
+                    {
+                      staticClass: "card-title text-center arena-page__header",
+                    },
+                    [_vm._v("Обычно")]
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center arena-page__award" }, [
+                    _vm._v("2 опыта и 10 монет"),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    { staticClass: "text-center arena-page__requirement" },
+                    [_vm._v("ТРЕБОВАНИЯ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      staticClass:
+                        "btn btn-primary align-self-center arena-page__button__item",
+                      attrs: { id: "quest4-button" },
+                      on: { click: _vm.startEasyBattle },
+                    },
+                    [_vm._v("Бой")]
+                  ),
+                ]),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "card", staticStyle: { width: "15rem" } },
+              [
+                _c("div", { staticClass: "card-body d-flex flex-column" }, [
+                  _c(
+                    "h5",
+                    {
+                      staticClass: "card-title text-center arena-page__header",
+                    },
+                    [_vm._v("Средне")]
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center arena-page__award" }, [
+                    _vm._v("5 опыта и 20 монет"),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    { staticClass: "text-center arena-page__requirement" },
+                    [_vm._v("ТРЕБОВАНИЯ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      staticClass:
+                        "btn btn-primary align-self-center arena-page__button__item",
+                      attrs: { id: "quest5-button" },
+                      on: { click: _vm.startMediumBattle },
+                    },
+                    [_vm._v("Бой")]
+                  ),
+                ]),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "card", staticStyle: { width: "15rem" } },
+              [
+                _c("div", { staticClass: "card-body d-flex flex-column" }, [
+                  _c(
+                    "h5",
+                    {
+                      staticClass: "card-title text-center arena-page__header",
+                    },
+                    [_vm._v("Сложно")]
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-center arena-page__award" }, [
+                    _vm._v("15 опыта и 30 монет"),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    { staticClass: "text-center arena-page__requirement" },
+                    [_vm._v("ТРЕБОВАНИЯ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      staticClass:
+                        "btn btn-primary align-self-center arena-page__button__item",
+                      on: { click: _vm.startHardBattle },
+                    },
+                    [_vm._v("Бой")]
+                  ),
+                ]),
+              ]
+            ),
+          ]),
+        ]),
+      ]),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "row pt-2" }, [
+        _c("div", { staticClass: "col d-flex flex-column" }, [
+          _c("div", { staticClass: "align-self-center" }, [
+            _c(
+              "span",
+              {
+                staticClass: "btn btn-primary arena-page__button",
+                attrs: { type: "button" },
+                on: { click: _vm.myHeroButtonClick },
+              },
+              [_vm._v("Мой герой")]
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                staticClass: "btn btn-primary arena-page__button",
+                attrs: { type: "button" },
+                on: { click: _vm.homeButtonClick },
+              },
+              [_vm._v("На главную")]
+            ),
+          ]),
+        ]),
+      ]),
+      _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
+      _vm._m(2),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row px-2 pt-4" }, [
+      _c("div", { staticClass: "col" }, [
+        _c("hr", { staticClass: "arena-page__underline" }),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row px-2 pt-2" }, [
+      _c("div", { staticClass: "col" }, [
+        _c("hr", { staticClass: "arena-page__underline" }),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row px-3 pb-4" }, [
+      _c("div", { staticClass: "col" }, [
+        _c("i", { attrs: { id: "arena-page__gender" } }),
+        _c("span", {
+          staticClass: "arena-page__hero-name",
+          attrs: { id: "arena-page__login" },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col" }, [
+        _c("i", { staticClass: "fas fa-arrow-up" }),
+        _c("span", {
+          staticClass: "arena-page__hero-level",
+          attrs: { id: "arena-page__level" },
+        }),
+        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-coins" }),
+        _c("span", {
+          staticClass: "arena-page__hero-balance",
+          attrs: { id: "arena-page__balance" },
+        }),
+      ]),
+    ])
+  },
+]
+render._withStripped = true
+
 
 
 /***/ }),
@@ -30289,11 +30906,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row px-3" }, [
       _c("div", { staticClass: "col" }, [
-        _c("span", {
-          staticClass: "game-page__hero-gender",
-          attrs: { id: "game-page__gender" },
-        }),
-        _vm._v(" "),
+        _c("i", { attrs: { id: "game-page__gender" } }),
         _c("span", {
           staticClass: "game-page__hero-name",
           attrs: { id: "game-page__login" },
@@ -30301,16 +30914,13 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col" }, [
+        _c("i", { staticClass: "fas fa-arrow-up" }),
         _c("span", {
           staticClass: "game-page__hero-level",
           attrs: { id: "game-page__level" },
         }),
         _vm._v(" "),
-        _c("span", {
-          staticClass: "game-page__hero-space",
-          attrs: { id: "game-page__space" },
-        }),
-        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-coins" }),
         _c("span", {
           staticClass: "game-page__hero-balance",
           attrs: { id: "game-page__balance" },
@@ -31361,11 +31971,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row px-3 pb-4" }, [
       _c("div", { staticClass: "col" }, [
-        _c("span", {
-          staticClass: "quests-page__hero-gender",
-          attrs: { id: "quests-page__gender" },
-        }),
-        _vm._v(" "),
+        _c("i", { attrs: { id: "quests-page__gender" } }),
         _c("span", {
           staticClass: "quests-page__hero-name",
           attrs: { id: "quests-page__login" },
@@ -31373,16 +31979,13 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col" }, [
+        _c("i", { staticClass: "fas fa-arrow-up" }),
         _c("span", {
           staticClass: "quests-page__hero-level",
           attrs: { id: "quests-page__level" },
         }),
         _vm._v(" "),
-        _c("span", {
-          staticClass: "quests-page__hero-space",
-          attrs: { id: "quests-page__space" },
-        }),
-        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-coins" }),
         _c("span", {
           staticClass: "quests-page__hero-balance",
           attrs: { id: "quests-page__balance" },
@@ -31778,11 +32381,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row px-3 pb-4" }, [
       _c("div", { staticClass: "col" }, [
-        _c("span", {
-          staticClass: "shop-page__hero-gender",
-          attrs: { id: "shop-page__gender" },
-        }),
-        _vm._v(" "),
+        _c("i", { attrs: { id: "shop-page__gender" } }),
         _c("span", {
           staticClass: "shop-page__hero-name",
           attrs: { id: "shop-page__login" },
@@ -31790,16 +32389,13 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col" }, [
+        _c("i", { staticClass: "fas fa-arrow-up" }),
         _c("span", {
           staticClass: "shop-page__hero-level",
           attrs: { id: "shop-page__level" },
         }),
         _vm._v(" "),
-        _c("span", {
-          staticClass: "shop-page__hero-space",
-          attrs: { id: "shop-page__space" },
-        }),
-        _vm._v(" "),
+        _c("i", { staticClass: "fas fa-coins" }),
         _c("span", {
           staticClass: "shop-page__hero-balance",
           attrs: { id: "shop-page__balance" },

@@ -39,19 +39,11 @@ class AuthController extends Controller
     }
 
     public function register(Request $request) {
-        $out = new \Symfony\Component\Console\Output\ConsoleOutput();
-
         $data = objectToarray(json_decode(file_get_contents('php://input')));
 
         $accounts = DB::table('accounts')->where('login', $data['login']);
 
-        $out->writeln('login - ' . $accounts->value('login'));
-
-        $checkUser = array(
-            'login' => $accounts->value('login'),
-        );
-
-        if ($checkUser['login'] == '' || $checkUser['login'] == null) {
+        if ($accounts->value('login') == '' || $accounts->value('login') == null) {
 
             $user = array(
                 'login' => $data['login'],
@@ -75,18 +67,12 @@ class AuthController extends Controller
 
             $resultWrite = DB::table('accounts')->insertGetId($user);
 
-            $out->writeln('result - ' . $resultWrite);
-
-            if ($resultWrite == true || $resultWrite == 1 || $resultWrite == '1')
+            if ($resultWrite == true || $resultWrite == 1 || $resultWrite == '1' || $resultWrite == 'true')
                 $resultWrite == 'true';
-
-                $out->writeln('result - ' . $resultWrite);
         }
         else {
             $resultWrite = 'false';
         }
-
-        $out->writeln('result - ' . $resultWrite);
 
         echo $resultWrite;
     }

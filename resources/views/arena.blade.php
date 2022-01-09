@@ -13,11 +13,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js"></script>
 
-    <title>Игра</title>
+    <title>Арена</title>
 </head>
 <body>
     <div id="app">
-        <game-page/>
+        <arena-page/>
     </div>
 </body>
 </html>
